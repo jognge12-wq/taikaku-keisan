@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="対角計算">
+<title>対角計算ツール</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #F5F3EE;
+    --surface: #FFFFFF;
+    --surface2: #EEEBE4;
+    --border: #D8D4CA;
+    --text: #1A1814;
+    --text2: #6B6760;
+    --text3: #9E9B95;
+    --c1: #1A5FA8;
+    --c1bg: #E8F1FB;
+    --c2: #3A7D1E;
+    --c2bg: #E8F5E0;
+    --c3: #A06010;
+    --c3bg: #FBF0DF;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  header {
+    background: var(--text);
+    color: #fff;
+    padding: 18px 20px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .header-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  header h1 {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  header p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 1px;
+  }
+
+  .main { padding: 20px 16px 40px; max-width: 480px; margin: 0 auto; }
+
+  .input-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 18px 16px;
+    margin-bottom: 16px;
+  }
+
+  .input-card-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text3);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .igroup { margin-bottom: 14px; }
+  .igroup:last-child { margin-bottom: 0; }
+
+  .ilabel {
+    font-size: 12px;
+    color: var(--text2);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ilabel-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--text3);
+    display: inline-block;
+  }
+
+  .uwrap { display: flex; align-items: center; gap: 10px; }
+
+  .uwrap input {
+    flex: 1;
+    font-size: 26px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+  }
+
+  .uwrap input:focus { border-color: var(--text); }
+  .uwrap input::placeholder { color: var(--text3); font-size: 22px; }
+
+  .ulabel {
+    font-size: 14px;
+    color: var(--text2);
+    font-weight: 500;
+    min-width: 28px;
+  }
+
+  .clear-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-weight: 500;
+    transition: background 0.15s;
+    -webkit-appearance: none;
+  }
+
+  .clear-btn:active { background: var(--surface2); }
+
+  .results { display: flex; flex-direction: column; gap: 14px; }
+
+  .pat-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.1s;
+  }
+
+  .pat-card:active { transform: scale(0.99); }
+
+  .pat-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .badge {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 13px;
+    border-radius: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .b1 { background: var(--c1bg); color: var(--c1); }
+  .b2 { background: var(--c2bg); color: var(--c2); }
+  .b3 { background: var(--c3bg); color: var(--c3); }
+
+  .pat-sub { font-size: 11px; color: var(--text3); font-weight: 500; }
+
+  .pat-body {
+    display: grid;
+    grid-template-columns: 1fr 140px;
+    align-items: center;
+  }
+
+  .vals { padding: 14px 16px; }
+
+  .main-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .main-unit {
+    font-size: 14px;
+    color: var(--text2);
+    margin-left: 3px;
+  }
+
+  .sub-vals {
+    display: flex;
+    gap: 14px;
+    margin-top: 8px;
+  }
+
+  .sub-item {
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  .sub-item strong {
+    color: var(--text2);
+    font-weight: 500;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+  }
+
+  .dim-info {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 6px;
+  }
+
+  .dim-info strong {
+    color: var(--text2);
+    font-weight: 500;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .svg-wrap {
+    padding: 10px 12px 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hint {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text3);
+    padding: 30px 0 10px;
+    line-height: 1.8;
+  }
+
+  /* dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141210;
+      --surface: #1E1C19;
+      --surface2: #272420;
+      --border: #3A3730;
+      --text: #F0EDE8;
+      --text2: #9E9B95;
+      --text3: #5E5B56;
+      --c1bg: #0F2A45;
+      --c1: #6BAEE8;
+      --c2bg: #152810;
+      --c2: #7CC44A;
+      --c3bg: #2E1E08;
+      --c3: #E8A050;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-icon">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <rect x="1" y="1" width="11" height="11" rx="1.5" stroke="white" stroke-width="1.5"/>
+      <line x1="1.5" y1="1.5" x2="12.5" y2="12.5" stroke="white" stroke-width="1.5" stroke-dasharray="3 1.5"/>
+      <line x1="6" y1="12" x2="17" y2="12" stroke="white" stroke-width="1.5"/>
+      <line x1="12" y1="6" x2="12" y2="17" stroke="white" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <div>
+    <h1>対角計算ツール</h1>
+    <p>通り芯 / 型枠面 — 3パターン同時表示</p>
+  </div>
+</header>
+
+<div class="main">
+  <div class="input-card">
+    <div class="input-card-title">通り芯の寸法</div>
+    <div class="igroup">
+      <div class="ilabel"><span class="ilabel-dot"></span>縦（X方向）通り芯〜通り芯</div>
+      <div class="uwrap">
+        <input type="number" inputmode="numeric" id="inX" placeholder="3000" oninput="calc()" />
+        <span class="ulabel">mm</span>
+      </div>
+    </div>
+    <div class="igroup">
+      <div class="ilabel"><span class="ilabel-dot"></span>横（Y方向）通り芯〜通り芯</div>
+      <div class="uwrap">
+        <input type="number" inputmode="numeric" id="inY" placeholder="4000" oninput="calc()" />
+        <span class="ulabel">mm</span>
+      </div>
+    </div>
+  </div>
+
+  <button class="clear-btn" onclick="clearAll()">クリア</button>
+
+  <div class="results" id="results"></div>
+  <div class="hint" id="hint">縦・横の寸法を入力すると<br>3パターンの対角線が表示されます</div>
+</div>
+
+<script>
+const PATS = [
+  { id:1, label:'① 通り芯〜通り芯', badge:'b1', color:'#1A5FA8', ox:0,   oy:0   },
+  { id:2, label:'② 通り芯〜型枠面', badge:'b2', color:'#3A7D1E', ox:80,  oy:80  },
+  { id:3, label:'③ 型枠面〜型枠面', badge:'b3', color:'#A06010', ox:160, oy:160 },
+];
+
+function diag(a,b){ return Math.sqrt(a*a+b*b); }
+function fmt(n){ return Math.round(n).toLocaleString(); }
+
+function makeSVG(ax, ay, d, color, patId) {
+  const W=140, H=116, pad=26;
+  const scale = Math.min((W-pad*2)/ay, (H-pad*2)/ax);
+  const rw = ay*scale, rh = ax*scale;
+  const ox = (W-rw)/2, oy = (H-rh)/2;
+
+  let inner = '';
+  if (patId === 2) {
+    const s = 80*scale;
+    inner = `<rect x="${ox+s/2}" y="${oy+s/2}" width="${rw-s}" height="${rh-s}"
+      fill="none" stroke="${color}" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.5" rx="1"/>`;
+  }
+  if (patId === 3) {
+    const s = 80*scale;
+    inner = `<rect x="${ox+s}" y="${oy+s}" width="${rw-s*2}" height="${rh-s*2}"
+      fill="none" stroke="${color}" stroke-width="1" stroke-dasharray="3 2" opacity="0.6" rx="1"/>`;
+  }
+
+  const dimT = oy - 10, dimL = ox - 11;
+
+  return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+    <rect x="${ox}" y="${oy}" width="${rw}" height="${rh}"
+      fill="${color}" fill-opacity="0.09" stroke="${color}" stroke-width="1.8" rx="2"/>
+    ${inner}
+    <line x1="${ox}" y1="${oy}" x2="${ox+rw}" y2="${oy+rh}"
+      stroke="${color}" stroke-width="2" stroke-dasharray="5 3"/>
+    <line x1="${ox}" y1="${dimT}" x2="${ox+rw}" y2="${dimT}" stroke="${color}" stroke-width="0.8"/>
+    <line x1="${ox}" y1="${dimT-3}" x2="${ox}" y2="${dimT+3}" stroke="${color}" stroke-width="0.8"/>
+    <line x1="${ox+rw}" y1="${dimT-3}" x2="${ox+rw}" y2="${dimT+3}" stroke="${color}" stroke-width="0.8"/>
+    <text x="${(ox*2+rw)/2}" y="${dimT-3}" font-size="8.5" fill="${color}" text-anchor="middle">${fmt(ay)}</text>
+    <line x1="${dimL}" y1="${oy}" x2="${dimL}" y2="${oy+rh}" stroke="${color}" stroke-width="0.8"/>
+    <line x1="${dimL-3}" y1="${oy}" x2="${dimL+3}" y2="${oy}" stroke="${color}" stroke-width="0.8"/>
+    <line x1="${dimL-3}" y1="${oy+rh}" x2="${dimL+3}" y2="${oy+rh}" stroke="${color}" stroke-width="0.8"/>
+    <text x="${dimL-4}" y="${(oy*2+rh)/2+3}" font-size="8.5" fill="${color}" text-anchor="middle"
+      transform="rotate(-90 ${dimL-4} ${(oy*2+rh)/2+3})">${fmt(ax)}</text>
+  </svg>`;
+}
+
+function calc() {
+  const x = parseFloat(document.getElementById('inX').value);
+  const y = parseFloat(document.getElementById('inY').value);
+  const res = document.getElementById('results');
+  const hint = document.getElementById('hint');
+
+  if (!x || !y || x <= 0 || y <= 0) {
+    res.innerHTML = '';
+    hint.style.display = '';
+    return;
+  }
+
+  hint.style.display = 'none';
+  res.innerHTML = '';
+
+  PATS.forEach(p => {
+    const ax = x + p.ox, ay = y + p.oy;
+    const d = diag(ax, ay);
+    const sub = p.ox === 0 ? 'オフセットなし' : p.id === 2 ? '片側 +80mm' : '両側 +160mm';
+
+    const card = document.createElement('div');
+    card.className = 'pat-card';
+    card.innerHTML = `
+      <div class="pat-head">
+        <span class="badge ${p.badge}">${p.label}</span>
+        <span class="pat-sub">${sub}</span>
+      </div>
+      <div class="pat-body">
+        <div class="vals">
+          <div>
+            <span class="main-val">${fmt(d)}</span><span class="main-unit">mm</span>
+          </div>
+          <div class="sub-vals">
+            <div class="sub-item"><strong>${(d/1000).toFixed(3)}</strong> m</div>
+            <div class="sub-item"><strong>${(d/303.03).toFixed(2)}</strong> 尺</div>
+          </div>
+          <div class="dim-info">X:<strong>${fmt(ax)}</strong> Y:<strong>${fmt(ay)}</strong></div>
+        </div>
+        <div class="svg-wrap">${makeSVG(ax, ay, d, p.color, p.id)}</div>
+      </div>
+    `;
+    res.appendChild(card);
+  });
+}
+
+function clearAll() {
+  document.getElementById('inX').value = '';
+  document.getElementById('inY').value = '';
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('hint').style.display = '';
+  document.getElementById('inX').focus();
+}
+</script>
+</body>
+</html>
