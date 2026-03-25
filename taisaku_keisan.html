@@ -64,14 +64,15 @@
 
   .uwrap { display: flex; align-items: center; gap: 10px; }
   .uwrap input {
-    flex: 1; font-size: 24px; font-family: 'DM Mono', monospace; font-weight: 500;
-    padding: 10px 14px; border-radius: var(--radius-sm);
+    flex: 1; font-size: 20px; font-family: 'DM Mono', monospace; font-weight: 500;
+    padding: 10px 10px; border-radius: var(--radius-sm);
     border: 1.5px solid var(--border); background: var(--bg); color: var(--text);
     outline: none; transition: border-color 0.15s; -webkit-appearance: none;
+    min-width: 0;
   }
   .uwrap input:focus { border-color: var(--text); }
-  .uwrap input::placeholder { color: var(--text3); font-size: 20px; }
-  .ulabel { font-size: 14px; color: var(--text2); font-weight: 500; min-width: 28px; }
+  .uwrap input::placeholder { color: var(--text3); font-size: 18px; }
+  .ulabel { font-size: 14px; color: var(--text2); font-weight: 500; min-width: 24px; flex-shrink: 0; }
 
   /* ④補正値選択 */
   .kosei-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -178,14 +179,14 @@
   <div class="card">
     <div class="card-title">通り芯の寸法</div>
     <div class="igroup">
-      <div class="ilabel"><span class="ilabel-dot"></span>縦（X方向）通り芯〜通り芯</div>
+      <div class="ilabel"><span class="ilabel-dot"></span>横（X方向）通り芯〜通り芯</div>
       <div class="uwrap">
         <input type="number" inputmode="numeric" id="inX" placeholder="3000" oninput="calc()" />
         <span class="ulabel">mm</span>
       </div>
     </div>
     <div class="igroup">
-      <div class="ilabel"><span class="ilabel-dot"></span>横（Y方向）通り芯〜通り芯</div>
+      <div class="ilabel"><span class="ilabel-dot"></span>縦（Y方向）通り芯〜通り芯</div>
       <div class="uwrap">
         <input type="number" inputmode="numeric" id="inY" placeholder="4000" oninput="calc()" />
         <span class="ulabel">mm</span>
@@ -198,7 +199,7 @@
     <div class="card-title">④ 型枠補正値</div>
     <div class="kosei-grid">
       <div class="kosei-group">
-        <div class="kosei-label"><span class="kosei-dot"></span>X方向</div>
+        <div class="kosei-label"><span class="kosei-dot"></span>X方向（横）</div>
         <div class="toggle-row">
           <button class="toggle-btn active" id="kx80" onclick="setKosei('x',80)">80</button>
           <button class="toggle-btn" id="kx160" onclick="setKosei('x',160)">160</button>
@@ -206,7 +207,7 @@
         <div class="toggle-unit">mm</div>
       </div>
       <div class="kosei-group">
-        <div class="kosei-label"><span class="kosei-dot"></span>Y方向</div>
+        <div class="kosei-label"><span class="kosei-dot"></span>Y方向（縦）</div>
         <div class="toggle-row">
           <button class="toggle-btn active" id="ky80" onclick="setKosei('y',80)">80</button>
           <button class="toggle-btn" id="ky160" onclick="setKosei('y',160)">160</button>
