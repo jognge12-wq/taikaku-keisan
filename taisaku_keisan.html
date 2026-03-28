@@ -19,139 +19,261 @@
     --text: #1A1814;
     --text2: #6B6760;
     --text3: #9E9B95;
-    --c1: #1A5FA8; --c1bg: #E8F1FB;
-    --c2: #3A7D1E; --c2bg: #E8F5E0;
-    --c3: #A06010; --c3bg: #FBF0DF;
-    --c4: #7B3AB0; --c4bg: #F3EAFB;
+    --c1: #1A5FA8;
+    --c1bg: #E8F1FB;
+    --c2: #3A7D1E;
+    --c2bg: #E8F5E0;
+    --c3: #A06010;
+    --c3bg: #FBF0DF;
     --radius: 14px;
     --radius-sm: 8px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-  body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
 
   header {
-    background: var(--text); color: #fff;
+    background: var(--text);
+    color: #fff;
     padding: 18px 20px 16px;
-    display: flex; align-items: center; gap: 12px;
-    position: sticky; top: 0; z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
+
   .header-icon {
-    width: 32px; height: 32px; background: rgba(255,255,255,0.15);
-    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  header h1 { font-size: 17px; font-weight: 700; letter-spacing: 0.02em; }
-  header p { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 1px; }
+
+  header h1 {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  header p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 1px;
+  }
 
   .main { padding: 20px 16px 40px; max-width: 480px; margin: 0 auto; }
 
-  .card {
-    background: var(--surface); border-radius: var(--radius);
-    border: 1px solid var(--border); padding: 16px; margin-bottom: 14px;
+  .input-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 18px 16px;
+    margin-bottom: 16px;
   }
 
-  .card-title {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
-    color: var(--text3); text-transform: uppercase; margin-bottom: 14px;
+  .input-card-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text3);
+    text-transform: uppercase;
+    margin-bottom: 14px;
   }
 
-  .igroup { margin-bottom: 12px; }
+  .igroup { margin-bottom: 14px; }
   .igroup:last-child { margin-bottom: 0; }
 
-  .ilabel { font-size: 12px; color: var(--text2); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-  .ilabel-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text3); display: inline-block; }
+  .ilabel {
+    font-size: 12px;
+    color: var(--text2);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ilabel-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--text3);
+    display: inline-block;
+  }
 
   .uwrap { display: flex; align-items: center; gap: 10px; }
+
   .uwrap input {
-    flex: 1; font-size: 16px; font-family: 'DM Mono', monospace; font-weight: 500;
-    padding: 10px 10px; border-radius: var(--radius-sm);
-    border: 1.5px solid var(--border); background: var(--bg); color: var(--text);
-    outline: none; transition: border-color 0.15s; -webkit-appearance: none;
-    min-width: 0;
+    flex: 1;
+    font-size: 26px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
   }
+
   .uwrap input:focus { border-color: var(--text); }
-  .uwrap input::placeholder { color: var(--text3); font-size: 16px; }
-  .ulabel { font-size: 14px; color: var(--text2); font-weight: 500; min-width: 24px; flex-shrink: 0; }
+  .uwrap input::placeholder { color: var(--text3); font-size: 22px; }
 
-  /* ④補正値選択 */
-  .kosei-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .kosei-group { display: flex; flex-direction: column; gap: 8px; }
-  .kosei-label { font-size: 12px; color: var(--text2); display: flex; align-items: center; gap: 6px; }
-  .kosei-dot { width: 8px; height: 8px; border-radius: 2px; display: inline-block; background: var(--c4); }
-
-  .toggle-row { display: flex; gap: 0; border: 1.5px solid var(--c4); border-radius: var(--radius-sm); overflow: hidden; }
-  .toggle-btn {
-    flex: 1; padding: 10px 0; font-size: 16px; font-family: 'DM Mono', monospace; font-weight: 500;
-    background: transparent; color: var(--c4); border: none; cursor: pointer;
-    transition: background 0.15s, color 0.15s; -webkit-appearance: none;
+  .ulabel {
+    font-size: 14px;
+    color: var(--text2);
+    font-weight: 500;
+    min-width: 28px;
   }
-  .toggle-btn + .toggle-btn { border-left: 1.5px solid var(--c4); }
-  .toggle-btn.active { background: var(--c4); color: #fff; }
-  .toggle-unit { font-size: 11px; color: var(--text3); text-align: center; margin-top: 4px; }
 
   .clear-btn {
-    width: 100%; padding: 12px; font-size: 14px;
-    font-family: 'Noto Sans JP', sans-serif; color: var(--text2);
-    border: 1px solid var(--border); border-radius: var(--radius-sm);
-    background: var(--surface); cursor: pointer; margin-bottom: 20px;
-    font-weight: 500; -webkit-appearance: none; transition: background 0.15s;
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-weight: 500;
+    transition: background 0.15s;
+    -webkit-appearance: none;
   }
+
   .clear-btn:active { background: var(--surface2); }
 
   .results { display: flex; flex-direction: column; gap: 14px; }
 
   .pat-card {
-    background: var(--surface); border-radius: var(--radius);
-    border: 1px solid var(--border); overflow: hidden;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.1s;
   }
-  .pat-card.pat4 { border-color: var(--c4); border-width: 2px; }
+
+  .pat-card:active { transform: scale(0.99); }
 
   .pat-head {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 16px; border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
   }
-  .pat4 .pat-head { border-bottom-color: var(--c4); background: var(--c4bg); }
 
-  .badge { font-size: 12px; font-weight: 700; padding: 5px 13px; border-radius: 20px; }
+  .badge {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 13px;
+    border-radius: 20px;
+    letter-spacing: 0.02em;
+  }
+
   .b1 { background: var(--c1bg); color: var(--c1); }
   .b2 { background: var(--c2bg); color: var(--c2); }
   .b3 { background: var(--c3bg); color: var(--c3); }
-  .b4 { background: var(--c4bg); color: var(--c4); }
 
   .pat-sub { font-size: 11px; color: var(--text3); font-weight: 500; }
 
-  .pat-body { display: grid; grid-template-columns: 1fr 140px; align-items: center; }
+  .pat-body {
+    display: grid;
+    grid-template-columns: 1fr 140px;
+    align-items: center;
+  }
 
   .vals { padding: 14px 16px; }
-  .main-val { font-family: 'DM Mono', monospace; font-size: 30px; font-weight: 500; color: var(--text); line-height: 1; }
-  .main-unit { font-size: 14px; color: var(--text2); margin-left: 3px; }
-  .sub-vals { display: flex; gap: 14px; margin-top: 8px; }
-  .sub-item { font-size: 12px; color: var(--text3); }
-  .sub-item strong { color: var(--text2); font-weight: 500; font-family: 'DM Mono', monospace; font-size: 13px; }
-  .dim-info { font-size: 11px; color: var(--text3); margin-top: 6px; }
-  .dim-info strong { color: var(--text2); font-weight: 500; font-family: 'DM Mono', monospace; }
 
-  .svg-wrap { padding: 10px 12px 10px 0; display: flex; align-items: center; justify-content: center; }
-
-  .hint { text-align: center; font-size: 12px; color: var(--text3); padding: 30px 0 10px; line-height: 1.8; }
-
-  .divider {
-    display: flex; align-items: center; gap: 10px;
-    margin: 6px 0 14px; color: var(--text3); font-size: 11px;
-  }
-  .divider::before, .divider::after {
-    content: ''; flex: 1; height: 1px; background: var(--border);
+  .main-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.01em;
   }
 
+  .main-unit {
+    font-size: 14px;
+    color: var(--text2);
+    margin-left: 3px;
+  }
+
+  .sub-vals {
+    display: flex;
+    gap: 14px;
+    margin-top: 8px;
+  }
+
+  .sub-item {
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  .sub-item strong {
+    color: var(--text2);
+    font-weight: 500;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+  }
+
+  .dim-info {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 6px;
+  }
+
+  .dim-info strong {
+    color: var(--text2);
+    font-weight: 500;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .svg-wrap {
+    padding: 10px 12px 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hint {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text3);
+    padding: 30px 0 10px;
+    line-height: 1.8;
+  }
+
+  /* dark mode */
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #141210; --surface: #1E1C19; --surface2: #272420;
-      --border: #3A3730; --text: #F0EDE8; --text2: #9E9B95; --text3: #5E5B56;
-      --c1bg: #0F2A45; --c1: #6BAEE8;
-      --c2bg: #152810; --c2: #7CC44A;
-      --c3bg: #2E1E08; --c3: #E8A050;
-      --c4bg: #2A1640; --c4: #C084F0;
+      --bg: #141210;
+      --surface: #1E1C19;
+      --surface2: #272420;
+      --border: #3A3730;
+      --text: #F0EDE8;
+      --text2: #9E9B95;
+      --text3: #5E5B56;
+      --c1bg: #0F2A45;
+      --c1: #6BAEE8;
+      --c2bg: #152810;
+      --c2: #7CC44A;
+      --c3bg: #2E1E08;
+      --c3: #E8A050;
     }
   }
 </style>
@@ -169,24 +291,22 @@
   </div>
   <div>
     <h1>対角計算ツール</h1>
-    <p>通り芯 / 型枠面 — 4パターン同時表示</p>
+    <p>通り芯 / 型枠面 — 3パターン同時表示</p>
   </div>
 </header>
 
 <div class="main">
-
-  <!-- 通り芯入力 -->
-  <div class="card">
-    <div class="card-title">通り芯の寸法</div>
+  <div class="input-card">
+    <div class="input-card-title">通り芯の寸法</div>
     <div class="igroup">
-      <div class="ilabel"><span class="ilabel-dot"></span>横（X方向）通り芯〜通り芯</div>
+      <div class="ilabel"><span class="ilabel-dot"></span>縦（X方向）通り芯〜通り芯</div>
       <div class="uwrap">
         <input type="number" inputmode="numeric" id="inX" placeholder="3000" oninput="calc()" />
         <span class="ulabel">mm</span>
       </div>
     </div>
     <div class="igroup">
-      <div class="ilabel"><span class="ilabel-dot"></span>縦（Y方向）通り芯〜通り芯</div>
+      <div class="ilabel"><span class="ilabel-dot"></span>横（Y方向）通り芯〜通り芯</div>
       <div class="uwrap">
         <input type="number" inputmode="numeric" id="inY" placeholder="4000" oninput="calc()" />
         <span class="ulabel">mm</span>
@@ -194,103 +314,58 @@
     </div>
   </div>
 
-  <!-- ④補正値 -->
-  <div class="card">
-    <div class="card-title">④ 型枠補正値</div>
-    <div class="kosei-grid">
-      <div class="kosei-group">
-        <div class="kosei-label"><span class="kosei-dot"></span>X方向（横）</div>
-        <div class="toggle-row">
-          <button class="toggle-btn active" id="kx80" onclick="setKosei('x',80)">80</button>
-          <button class="toggle-btn" id="kx160" onclick="setKosei('x',160)">160</button>
-        </div>
-        <div class="toggle-unit">mm</div>
-      </div>
-      <div class="kosei-group">
-        <div class="kosei-label"><span class="kosei-dot"></span>Y方向（縦）</div>
-        <div class="toggle-row">
-          <button class="toggle-btn active" id="ky80" onclick="setKosei('y',80)">80</button>
-          <button class="toggle-btn" id="ky160" onclick="setKosei('y',160)">160</button>
-        </div>
-        <div class="toggle-unit">mm</div>
-      </div>
-    </div>
-  </div>
-
   <button class="clear-btn" onclick="clearAll()">クリア</button>
 
   <div class="results" id="results"></div>
-  <div class="hint" id="hint">縦・横の寸法を入力すると<br>4パターンの対角線が表示されます</div>
+  <div class="hint" id="hint">縦・横の寸法を入力すると<br>3パターンの対角線が表示されます</div>
 </div>
 
 <script>
-let kx = 80, ky = 80;
+const PATS = [
+  { id:1, label:'① 通り芯〜通り芯', badge:'b1', color:'#1A5FA8', ox:0,   oy:0   },
+  { id:2, label:'② 通り芯〜型枠面', badge:'b2', color:'#3A7D1E', ox:80,  oy:80  },
+  { id:3, label:'③ 型枠面〜型枠面', badge:'b3', color:'#A06010', ox:160, oy:160 },
+];
 
-function setKosei(dir, val) {
-  if (dir === 'x') {
-    kx = val;
-    document.getElementById('kx80').classList.toggle('active', val === 80);
-    document.getElementById('kx160').classList.toggle('active', val === 160);
-  } else {
-    ky = val;
-    document.getElementById('ky80').classList.toggle('active', val === 80);
-    document.getElementById('ky160').classList.toggle('active', val === 160);
+function diag(a,b){ return Math.sqrt(a*a+b*b); }
+function fmt(n){ return Math.round(n).toLocaleString(); }
+
+function makeSVG(ax, ay, d, color, patId) {
+  const W=140, H=116, pad=26;
+  const scale = Math.min((W-pad*2)/ay, (H-pad*2)/ax);
+  const rw = ay*scale, rh = ax*scale;
+  const ox = (W-rw)/2, oy = (H-rh)/2;
+
+  let inner = '';
+  if (patId === 2) {
+    const s = 80*scale;
+    inner = `<rect x="${ox+s/2}" y="${oy+s/2}" width="${rw-s}" height="${rh-s}"
+      fill="none" stroke="${color}" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.5" rx="1"/>`;
   }
-  calc();
-}
+  if (patId === 3) {
+    const s = 80*scale;
+    inner = `<rect x="${ox+s}" y="${oy+s}" width="${rw-s*2}" height="${rh-s*2}"
+      fill="none" stroke="${color}" stroke-width="1" stroke-dasharray="3 2" opacity="0.6" rx="1"/>`;
+  }
 
-function diag(a, b) { return Math.sqrt(a * a + b * b); }
-function fmt(n) { return Math.round(n).toLocaleString(); }
-
-function makeSVG(ax, ay, color, patId, isCustom) {
-  const W = 140, H = 116, pad = 26;
-  const scale = Math.min((W - pad * 2) / ay, (H - pad * 2) / ax);
-  const rw = ay * scale, rh = ax * scale;
-  const rx = (W - rw) / 2, ry = (H - rh) / 2;
-  const dimT = ry - 10, dimL = rx - 11;
-
-  const fillOpacity = isCustom ? '0.12' : '0.09';
-  const strokeW = isCustom ? '2' : '1.8';
+  const dimT = oy - 10, dimL = ox - 11;
 
   return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
-    <rect x="${rx}" y="${ry}" width="${rw}" height="${rh}"
-      fill="${color}" fill-opacity="${fillOpacity}" stroke="${color}" stroke-width="${strokeW}" rx="2"/>
-    <line x1="${rx}" y1="${ry}" x2="${rx+rw}" y2="${ry+rh}"
+    <rect x="${ox}" y="${oy}" width="${rw}" height="${rh}"
+      fill="${color}" fill-opacity="0.09" stroke="${color}" stroke-width="1.8" rx="2"/>
+    ${inner}
+    <line x1="${ox}" y1="${oy}" x2="${ox+rw}" y2="${oy+rh}"
       stroke="${color}" stroke-width="2" stroke-dasharray="5 3"/>
-    <line x1="${rx}" y1="${dimT}" x2="${rx+rw}" y2="${dimT}" stroke="${color}" stroke-width="0.8"/>
-    <line x1="${rx}" y1="${dimT-3}" x2="${rx}" y2="${dimT+3}" stroke="${color}" stroke-width="0.8"/>
-    <line x1="${rx+rw}" y1="${dimT-3}" x2="${rx+rw}" y2="${dimT+3}" stroke="${color}" stroke-width="0.8"/>
-    <text x="${(rx*2+rw)/2}" y="${dimT-3}" font-size="8.5" fill="${color}" text-anchor="middle">${fmt(ay)}</text>
-    <line x1="${dimL}" y1="${ry}" x2="${dimL}" y2="${ry+rh}" stroke="${color}" stroke-width="0.8"/>
-    <line x1="${dimL-3}" y1="${ry}" x2="${dimL+3}" y2="${ry}" stroke="${color}" stroke-width="0.8"/>
-    <line x1="${dimL-3}" y1="${ry+rh}" x2="${dimL+3}" y2="${ry+rh}" stroke="${color}" stroke-width="0.8"/>
-    <text x="${dimL-4}" y="${(ry*2+rh)/2+3}" font-size="8.5" fill="${color}" text-anchor="middle"
-      transform="rotate(-90 ${dimL-4} ${(ry*2+rh)/2+3})">${fmt(ax)}</text>
+    <line x1="${ox}" y1="${dimT}" x2="${ox+rw}" y2="${dimT}" stroke="${color}" stroke-width="0.8"/>
+    <line x1="${ox}" y1="${dimT-3}" x2="${ox}" y2="${dimT+3}" stroke="${color}" stroke-width="0.8"/>
+    <line x1="${ox+rw}" y1="${dimT-3}" x2="${ox+rw}" y2="${dimT+3}" stroke="${color}" stroke-width="0.8"/>
+    <text x="${(ox*2+rw)/2}" y="${dimT-3}" font-size="8.5" fill="${color}" text-anchor="middle">${fmt(ay)}</text>
+    <line x1="${dimL}" y1="${oy}" x2="${dimL}" y2="${oy+rh}" stroke="${color}" stroke-width="0.8"/>
+    <line x1="${dimL-3}" y1="${oy}" x2="${dimL+3}" y2="${oy}" stroke="${color}" stroke-width="0.8"/>
+    <line x1="${dimL-3}" y1="${oy+rh}" x2="${dimL+3}" y2="${oy+rh}" stroke="${color}" stroke-width="0.8"/>
+    <text x="${dimL-4}" y="${(oy*2+rh)/2+3}" font-size="8.5" fill="${color}" text-anchor="middle"
+      transform="rotate(-90 ${dimL-4} ${(oy*2+rh)/2+3})">${fmt(ax)}</text>
   </svg>`;
-}
-
-function makeCard(label, badge, color, ax, ay, sub, isCustom) {
-  const d = diag(ax, ay);
-  const div = document.createElement('div');
-  div.className = 'pat-card' + (isCustom ? ' pat4' : '');
-  div.innerHTML = `
-    <div class="pat-head">
-      <span class="badge ${badge}">${label}</span>
-      <span class="pat-sub">${sub}</span>
-    </div>
-    <div class="pat-body">
-      <div class="vals">
-        <div><span class="main-val">${fmt(d)}</span><span class="main-unit">mm</span></div>
-        <div class="sub-vals">
-          <div class="sub-item"><strong>${(d/1000).toFixed(3)}</strong> m</div>
-          <div class="sub-item"><strong>${(d/303.03).toFixed(2)}</strong> 尺</div>
-        </div>
-        <div class="dim-info">X:<strong>${fmt(ax)}</strong> Y:<strong>${fmt(ay)}</strong></div>
-      </div>
-      <div class="svg-wrap">${makeSVG(ax, ay, color, 0, isCustom)}</div>
-    </div>
-  `;
-  return div;
 }
 
 function calc() {
@@ -300,23 +375,42 @@ function calc() {
   const hint = document.getElementById('hint');
 
   if (!x || !y || x <= 0 || y <= 0) {
-    res.innerHTML = ''; hint.style.display = ''; return;
+    res.innerHTML = '';
+    hint.style.display = '';
+    return;
   }
 
   hint.style.display = 'none';
   res.innerHTML = '';
 
-  // ① 通り芯〜通り芯（補正なし）
-  res.appendChild(makeCard('① 通り芯〜通り芯', 'b1', '#1A5FA8', x, y, '補正なし', false));
+  PATS.forEach(p => {
+    const ax = x + p.ox, ay = y + p.oy;
+    const d = diag(ax, ay);
+    const sub = p.ox === 0 ? 'オフセットなし' : p.id === 2 ? '片側 +80mm' : '両側 +160mm';
 
-  // ② 通り芯〜型枠面（片側80mm固定）
-  res.appendChild(makeCard('② 通り芯〜型枠面', 'b2', '#3A7D1E', x+80, y+80, 'X+80mm / Y+80mm', false));
-
-  // ③ 型枠面〜型枠面（両側160mm固定）
-  res.appendChild(makeCard('③ 型枠面〜型枠面', 'b3', '#A06010', x+160, y+160, 'X+160mm / Y+160mm', false));
-
-  // ④ カスタム補正
-  res.appendChild(makeCard('④ 型枠補正値', 'b4', '#7B3AB0', x+kx, y+ky, `X+${kx}mm / Y+${ky}mm`, true));
+    const card = document.createElement('div');
+    card.className = 'pat-card';
+    card.innerHTML = `
+      <div class="pat-head">
+        <span class="badge ${p.badge}">${p.label}</span>
+        <span class="pat-sub">${sub}</span>
+      </div>
+      <div class="pat-body">
+        <div class="vals">
+          <div>
+            <span class="main-val">${fmt(d)}</span><span class="main-unit">mm</span>
+          </div>
+          <div class="sub-vals">
+            <div class="sub-item"><strong>${(d/1000).toFixed(3)}</strong> m</div>
+            <div class="sub-item"><strong>${(d/303.03).toFixed(2)}</strong> 尺</div>
+          </div>
+          <div class="dim-info">X:<strong>${fmt(ax)}</strong> Y:<strong>${fmt(ay)}</strong></div>
+        </div>
+        <div class="svg-wrap">${makeSVG(ax, ay, d, p.color, p.id)}</div>
+      </div>
+    `;
+    res.appendChild(card);
+  });
 }
 
 function clearAll() {
