@@ -42,7 +42,7 @@
   header {
     background: var(--text);
     color: #fff;
-    padding: 18px 20px 16px;
+    padding: 16px 20px 14px;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -52,8 +52,8 @@
   }
 
   .header-icon {
-    width: 32px;
-    height: 32px;
+    width: 32px; height: 32px;
+    flex-shrink: 0;
     background: rgba(255,255,255,0.15);
     border-radius: 8px;
     display: flex;
@@ -61,44 +61,36 @@
     justify-content: center;
   }
 
-  header h1 {
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
+  header h1 { font-size: 17px; font-weight: 700; letter-spacing: 0.02em; }
+  header p  { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 1px; }
 
-  header p {
-    font-size: 11px;
-    color: rgba(255,255,255,0.55);
-    margin-top: 1px;
-  }
+  .main { padding: 16px 16px 40px; max-width: 480px; margin: 0 auto; }
 
-  .main { padding: 20px 16px 40px; max-width: 480px; margin: 0 auto; }
-
-  .input-card {
+  /* ===== カード共通 ===== */
+  .card {
     background: var(--surface);
     border-radius: var(--radius);
     border: 1px solid var(--border);
-    padding: 18px 16px;
-    margin-bottom: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
   }
 
-  .input-card-title {
+  .card-title {
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.1em;
     color: var(--text3);
     text-transform: uppercase;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
 
-  .igroup { margin-bottom: 14px; }
+  .igroup { margin-bottom: 12px; }
   .igroup:last-child { margin-bottom: 0; }
 
   .ilabel {
     font-size: 12px;
     color: var(--text2);
-    margin-bottom: 6px;
+    margin-bottom: 5px;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -108,17 +100,24 @@
     width: 6px; height: 6px;
     border-radius: 50%;
     background: var(--text3);
-    display: inline-block;
+    flex-shrink: 0;
   }
 
-  .uwrap { display: flex; align-items: center; gap: 10px; }
+  /* ===== 入力行（mmが必ず見える） ===== */
+  .uwrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
   .uwrap input {
     flex: 1;
-    font-size: 26px;
+    min-width: 0;
+    width: 0;
+    font-size: 24px;
     font-family: 'DM Mono', monospace;
     font-weight: 500;
-    padding: 12px 14px;
+    padding: 10px 12px;
     border-radius: var(--radius-sm);
     border: 1.5px solid var(--border);
     background: var(--bg);
@@ -129,13 +128,95 @@
   }
 
   .uwrap input:focus { border-color: var(--text); }
-  .uwrap input::placeholder { color: var(--text3); font-size: 22px; }
+  .uwrap input::placeholder { color: var(--text3); font-size: 20px; }
 
   .ulabel {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--text2);
+    font-weight: 600;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .expr-preview {
+    font-size: 12px;
+    color: var(--c2);
+    font-family: 'DM Mono', monospace;
     font-weight: 500;
-    min-width: 28px;
+    margin-top: 4px;
+    min-height: 16px;
+  }
+
+  .expr-hint {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+
+  /* ===== オフセット設定（2列グリッド） ===== */
+  .offset-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .offset-label {
+    font-size: 12px;
+    color: var(--text2);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .offset-label .tag {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 10px;
+    background: var(--surface2);
+    color: var(--text2);
+    letter-spacing: 0.05em;
+  }
+
+  .offset-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .offset-wrap input {
+    flex: 1;
+    min-width: 0;
+    width: 0;
+    font-size: 20px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+  }
+
+  .offset-wrap input:focus { border-color: var(--text); }
+
+  .offset-unit {
+    font-size: 13px;
+    color: var(--text2);
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .offset-note {
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 8px;
+    line-height: 1.5;
   }
 
   .clear-btn {
@@ -148,7 +229,7 @@
     border-radius: var(--radius-sm);
     background: var(--surface);
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     font-weight: 500;
     transition: background 0.15s;
     -webkit-appearance: none;
@@ -156,7 +237,7 @@
 
   .clear-btn:active { background: var(--surface2); }
 
-  .results { display: flex; flex-direction: column; gap: 14px; }
+  .results { display: flex; flex-direction: column; gap: 12px; }
 
   .pat-card {
     background: var(--surface);
@@ -172,14 +253,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-bottom: 1px solid var(--border);
   }
 
   .badge {
     font-size: 12px;
     font-weight: 700;
-    padding: 5px 13px;
+    padding: 4px 12px;
     border-radius: 20px;
     letter-spacing: 0.02em;
   }
@@ -192,37 +273,30 @@
 
   .pat-body {
     display: grid;
-    grid-template-columns: 1fr 140px;
+    grid-template-columns: 1fr 128px;
     align-items: center;
   }
 
-  .vals { padding: 14px 16px; }
+  .vals { padding: 12px 14px; }
 
   .main-val {
     font-family: 'DM Mono', monospace;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 500;
     color: var(--text);
     line-height: 1;
     letter-spacing: -0.01em;
   }
 
-  .main-unit {
-    font-size: 14px;
-    color: var(--text2);
-    margin-left: 3px;
-  }
+  .main-unit { font-size: 14px; color: var(--text2); margin-left: 3px; }
 
   .sub-vals {
     display: flex;
-    gap: 14px;
-    margin-top: 8px;
+    gap: 12px;
+    margin-top: 6px;
   }
 
-  .sub-item {
-    font-size: 12px;
-    color: var(--text3);
-  }
+  .sub-item { font-size: 12px; color: var(--text3); }
 
   .sub-item strong {
     color: var(--text2);
@@ -231,11 +305,7 @@
     font-size: 13px;
   }
 
-  .dim-info {
-    font-size: 11px;
-    color: var(--text3);
-    margin-top: 6px;
-  }
+  .dim-info { font-size: 11px; color: var(--text3); margin-top: 5px; }
 
   .dim-info strong {
     color: var(--text2);
@@ -244,7 +314,7 @@
   }
 
   .svg-wrap {
-    padding: 10px 12px 10px 0;
+    padding: 8px 10px 8px 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -254,11 +324,11 @@
     text-align: center;
     font-size: 12px;
     color: var(--text3);
-    padding: 30px 0 10px;
+    padding: 28px 0 10px;
     line-height: 1.8;
   }
 
-  /* dark mode */
+  /* ===== ダークモード ===== */
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #141210;
@@ -268,12 +338,9 @@
       --text: #F0EDE8;
       --text2: #9E9B95;
       --text3: #5E5B56;
-      --c1bg: #0F2A45;
-      --c1: #6BAEE8;
-      --c2bg: #152810;
-      --c2: #7CC44A;
-      --c3bg: #2E1E08;
-      --c3: #E8A050;
+      --c1bg: #0F2A45; --c1: #6BAEE8;
+      --c2bg: #152810; --c2: #7CC44A;
+      --c3bg: #2E1E08; --c3: #E8A050;
     }
   }
 </style>
@@ -296,21 +363,64 @@
 </header>
 
 <div class="main">
-  <div class="input-card">
-    <div class="input-card-title">通り芯の寸法</div>
+
+  <!-- ① 通り芯の寸法 -->
+  <div class="card">
+    <div class="card-title">通り芯の寸法</div>
+
     <div class="igroup">
       <div class="ilabel"><span class="ilabel-dot"></span>縦（X方向）通り芯〜通り芯</div>
       <div class="uwrap">
-        <input type="number" inputmode="numeric" id="inX" placeholder="3000" oninput="calc()" />
+        <input type="text" inputmode="decimal" id="inX" placeholder="3000"
+          oninput="onInput('X')"
+          autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
         <span class="ulabel">mm</span>
       </div>
+      <div class="expr-preview" id="exprX"></div>
+      <div class="expr-hint">例: 3000+200、4800-75 のように計算式も入力できます</div>
     </div>
+
     <div class="igroup">
       <div class="ilabel"><span class="ilabel-dot"></span>横（Y方向）通り芯〜通り芯</div>
       <div class="uwrap">
-        <input type="number" inputmode="numeric" id="inY" placeholder="4000" oninput="calc()" />
+        <input type="text" inputmode="decimal" id="inY" placeholder="4000"
+          oninput="onInput('Y')"
+          autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
         <span class="ulabel">mm</span>
       </div>
+      <div class="expr-preview" id="exprY"></div>
+    </div>
+  </div>
+
+  <!-- ② 型枠オフセット設定 -->
+  <div class="card">
+    <div class="card-title">型枠オフセット（片面）</div>
+    <div class="offset-grid">
+      <div class="offset-item">
+        <div class="offset-label">
+          <span class="tag">X方向</span>縦の型枠厚
+        </div>
+        <div class="offset-wrap">
+          <input type="text" inputmode="decimal" id="oxVal" value="80"
+            oninput="calc()"
+            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+          <span class="offset-unit">mm</span>
+        </div>
+      </div>
+      <div class="offset-item">
+        <div class="offset-label">
+          <span class="tag">Y方向</span>横の型枠厚
+        </div>
+        <div class="offset-wrap">
+          <input type="text" inputmode="decimal" id="oyVal" value="80"
+            oninput="calc()"
+            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+          <span class="offset-unit">mm</span>
+        </div>
+      </div>
+    </div>
+    <div class="offset-note">
+      ②通り芯〜型枠面：各方向に +1倍　③型枠面〜型枠面：各方向に +2倍
     </div>
   </div>
 
@@ -321,60 +431,94 @@
 </div>
 
 <script>
-const PATS = [
-  { id:1, label:'① 通り芯〜通り芯', badge:'b1', color:'#1A5FA8', ox:0,   oy:0   },
-  { id:2, label:'② 通り芯〜型枠面', badge:'b2', color:'#3A7D1E', ox:80,  oy:80  },
-  { id:3, label:'③ 型枠面〜型枠面', badge:'b3', color:'#A06010', ox:160, oy:160 },
-];
-
-function diag(a,b){ return Math.sqrt(a*a+b*b); }
-function fmt(n){ return Math.round(n).toLocaleString(); }
-
-function makeSVG(ax, ay, d, color, patId) {
-  const W=140, H=116, pad=26;
-  const scale = Math.min((W-pad*2)/ay, (H-pad*2)/ax);
-  const rw = ay*scale, rh = ax*scale;
-  const ox = (W-rw)/2, oy = (H-rh)/2;
-
-  let inner = '';
-  if (patId === 2) {
-    const s = 80*scale;
-    inner = `<rect x="${ox+s/2}" y="${oy+s/2}" width="${rw-s}" height="${rh-s}"
-      fill="none" stroke="${color}" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.5" rx="1"/>`;
-  }
-  if (patId === 3) {
-    const s = 80*scale;
-    inner = `<rect x="${ox+s}" y="${oy+s}" width="${rw-s*2}" height="${rh-s*2}"
-      fill="none" stroke="${color}" stroke-width="1" stroke-dasharray="3 2" opacity="0.6" rx="1"/>`;
-  }
-
-  const dimT = oy - 10, dimL = ox - 11;
-
-  return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
-    <rect x="${ox}" y="${oy}" width="${rw}" height="${rh}"
-      fill="${color}" fill-opacity="0.09" stroke="${color}" stroke-width="1.8" rx="2"/>
-    ${inner}
-    <line x1="${ox}" y1="${oy}" x2="${ox+rw}" y2="${oy+rh}"
-      stroke="${color}" stroke-width="2" stroke-dasharray="5 3"/>
-    <line x1="${ox}" y1="${dimT}" x2="${ox+rw}" y2="${dimT}" stroke="${color}" stroke-width="0.8"/>
-    <line x1="${ox}" y1="${dimT-3}" x2="${ox}" y2="${dimT+3}" stroke="${color}" stroke-width="0.8"/>
-    <line x1="${ox+rw}" y1="${dimT-3}" x2="${ox+rw}" y2="${dimT+3}" stroke="${color}" stroke-width="0.8"/>
-    <text x="${(ox*2+rw)/2}" y="${dimT-3}" font-size="8.5" fill="${color}" text-anchor="middle">${fmt(ay)}</text>
-    <line x1="${dimL}" y1="${oy}" x2="${dimL}" y2="${oy+rh}" stroke="${color}" stroke-width="0.8"/>
-    <line x1="${dimL-3}" y1="${oy}" x2="${dimL+3}" y2="${oy}" stroke="${color}" stroke-width="0.8"/>
-    <line x1="${dimL-3}" y1="${oy+rh}" x2="${dimL+3}" y2="${oy+rh}" stroke="${color}" stroke-width="0.8"/>
-    <text x="${dimL-4}" y="${(oy*2+rh)/2+3}" font-size="8.5" fill="${color}" text-anchor="middle"
-      transform="rotate(-90 ${dimL-4} ${(oy*2+rh)/2+3})">${fmt(ax)}</text>
-  </svg>`;
+/* ===== 安全な計算式パーサー ===== */
+function parseExpr(s) {
+  if (!s || !s.trim()) return NaN;
+  var clean = s.trim().replace(/[^0-9+\-*\/().\s]/g, '');
+  if (!clean) return NaN;
+  try {
+    var val = Function('"use strict"; return (' + clean + ')')();
+    return (typeof val === 'number' && isFinite(val) && val > 0) ? val : NaN;
+  } catch(e) { return NaN; }
 }
 
-function calc() {
-  const x = parseFloat(document.getElementById('inX').value);
-  const y = parseFloat(document.getElementById('inY').value);
-  const res = document.getElementById('results');
-  const hint = document.getElementById('hint');
+function parseOffset(s) {
+  if (!s || !s.trim()) return NaN;
+  var clean = s.trim().replace(/[^0-9+\-*\/().\s]/g, '');
+  if (!clean) return NaN;
+  try {
+    var val = Function('"use strict"; return (' + clean + ')')();
+    return (typeof val === 'number' && isFinite(val) && val >= 0) ? val : NaN;
+  } catch(e) { return NaN; }
+}
 
-  if (!x || !y || x <= 0 || y <= 0) {
+/* ===== 入力時のプレビュー ===== */
+function onInput(axis) {
+  var id = 'in' + axis;
+  var previewId = 'expr' + axis;
+  var raw = document.getElementById(id).value;
+  var previewEl = document.getElementById(previewId);
+
+  if (/[+\-*\/()]/.test(raw)) {
+    var val = parseExpr(raw);
+    previewEl.textContent = isNaN(val) ? '' : '= ' + fmt(val) + ' mm';
+  } else {
+    previewEl.textContent = '';
+  }
+  calc();
+}
+
+/* ===== 数値フォーマット ===== */
+function fmt(n) { return Math.round(n).toLocaleString(); }
+function diag(a, b) { return Math.sqrt(a*a + b*b); }
+
+/* ===== SVG生成 ===== */
+function makeSVG(ax, ay, color, patId, ox, oy) {
+  var W=128, H=108, pad=22;
+  var scale = Math.min((W-pad*2)/ay, (H-pad*2)/ax);
+  var rw = ay*scale, rh = ax*scale;
+  var bx = (W-rw)/2, by = (H-rh)/2;
+
+  var inner = '';
+  if (patId === 2 && (ox > 0 || oy > 0)) {
+    var sw = oy*scale, sh = ox*scale;
+    inner = '<rect x="'+(bx+sw/2)+'" y="'+(by+sh/2)+'" width="'+(rw-sw)+'" height="'+(rh-sh)+'" fill="none" stroke="'+color+'" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.5" rx="1"/>';
+  }
+  if (patId === 3 && (ox > 0 || oy > 0)) {
+    var sw2 = oy*scale, sh2 = ox*scale;
+    inner = '<rect x="'+(bx+sw2)+'" y="'+(by+sh2)+'" width="'+(rw-sw2*2)+'" height="'+(rh-sh2*2)+'" fill="none" stroke="'+color+'" stroke-width="1" stroke-dasharray="3 2" opacity="0.6" rx="1"/>';
+  }
+
+  var dimT = by - 10, dimL = bx - 11;
+
+  return '<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" xmlns="http://www.w3.org/2000/svg">'
+    + '<rect x="'+bx+'" y="'+by+'" width="'+rw+'" height="'+rh+'" fill="'+color+'" fill-opacity="0.09" stroke="'+color+'" stroke-width="1.8" rx="2"/>'
+    + inner
+    + '<line x1="'+bx+'" y1="'+by+'" x2="'+(bx+rw)+'" y2="'+(by+rh)+'" stroke="'+color+'" stroke-width="2" stroke-dasharray="5 3"/>'
+    + '<line x1="'+bx+'" y1="'+dimT+'" x2="'+(bx+rw)+'" y2="'+dimT+'" stroke="'+color+'" stroke-width="0.8"/>'
+    + '<line x1="'+bx+'" y1="'+(dimT-3)+'" x2="'+bx+'" y2="'+(dimT+3)+'" stroke="'+color+'" stroke-width="0.8"/>'
+    + '<line x1="'+(bx+rw)+'" y1="'+(dimT-3)+'" x2="'+(bx+rw)+'" y2="'+(dimT+3)+'" stroke="'+color+'" stroke-width="0.8"/>'
+    + '<text x="'+((bx*2+rw)/2)+'" y="'+(dimT-3)+'" font-size="8" fill="'+color+'" text-anchor="middle">'+fmt(ay)+'<\/text>'
+    + '<line x1="'+dimL+'" y1="'+by+'" x2="'+dimL+'" y2="'+(by+rh)+'" stroke="'+color+'" stroke-width="0.8"/>'
+    + '<line x1="'+(dimL-3)+'" y1="'+by+'" x2="'+(dimL+3)+'" y2="'+by+'" stroke="'+color+'" stroke-width="0.8"/>'
+    + '<line x1="'+(dimL-3)+'" y1="'+(by+rh)+'" x2="'+(dimL+3)+'" y2="'+(by+rh)+'" stroke="'+color+'" stroke-width="0.8"/>'
+    + '<text x="'+(dimL-4)+'" y="'+((by*2+rh)/2+3)+'" font-size="8" fill="'+color+'" text-anchor="middle" transform="rotate(-90 '+(dimL-4)+' '+((by*2+rh)/2+3)+')">'+fmt(ax)+'<\/text>'
+    + '<\/svg>';
+}
+
+/* ===== メイン計算 ===== */
+function calc() {
+  var x  = parseExpr(document.getElementById('inX').value);
+  var y  = parseExpr(document.getElementById('inY').value);
+  var ox = parseOffset(document.getElementById('oxVal').value);
+  var oy = parseOffset(document.getElementById('oyVal').value);
+  if (isNaN(ox)) ox = 0;
+  if (isNaN(oy)) oy = 0;
+
+  var res  = document.getElementById('results');
+  var hint = document.getElementById('hint');
+
+  if (isNaN(x) || isNaN(y) || x <= 0 || y <= 0) {
     res.innerHTML = '';
     hint.style.display = '';
     return;
@@ -383,39 +527,54 @@ function calc() {
   hint.style.display = 'none';
   res.innerHTML = '';
 
-  PATS.forEach(p => {
-    const ax = x + p.ox, ay = y + p.oy;
-    const d = diag(ax, ay);
-    const sub = p.ox === 0 ? 'オフセットなし' : p.id === 2 ? '片側 +80mm' : '両側 +160mm';
+  var PATS = [
+    { id:1, label:'① 通り芯〜通り芯', badge:'b1', color:'#1A5FA8', mox:0, moy:0 },
+    { id:2, label:'② 通り芯〜型枠面', badge:'b2', color:'#3A7D1E', mox:1, moy:1 },
+    { id:3, label:'③ 型枠面〜型枠面', badge:'b3', color:'#A06010', mox:2, moy:2 },
+  ];
 
-    const card = document.createElement('div');
+  PATS.forEach(function(p) {
+    var ax = x + ox * p.mox;
+    var ay = y + oy * p.moy;
+    var d  = diag(ax, ay);
+
+    var subX = p.mox === 0 ? 'なし'
+      : p.mox === 1 ? '+' + fmt(ox) + 'mm'
+      : '+' + fmt(ox*2) + 'mm (×2)';
+    var subY = p.moy === 0 ? 'なし'
+      : p.moy === 1 ? '+' + fmt(oy) + 'mm'
+      : '+' + fmt(oy*2) + 'mm (×2)';
+
+    var card = document.createElement('div');
     card.className = 'pat-card';
-    card.innerHTML = `
-      <div class="pat-head">
-        <span class="badge ${p.badge}">${p.label}</span>
-        <span class="pat-sub">${sub}</span>
-      </div>
-      <div class="pat-body">
-        <div class="vals">
-          <div>
-            <span class="main-val">${fmt(d)}</span><span class="main-unit">mm</span>
-          </div>
-          <div class="sub-vals">
-            <div class="sub-item"><strong>${(d/1000).toFixed(3)}</strong> m</div>
-            <div class="sub-item"><strong>${(d/303.03).toFixed(2)}</strong> 尺</div>
-          </div>
-          <div class="dim-info">X:<strong>${fmt(ax)}</strong> Y:<strong>${fmt(ay)}</strong></div>
-        </div>
-        <div class="svg-wrap">${makeSVG(ax, ay, d, p.color, p.id)}</div>
-      </div>
-    `;
+    card.innerHTML =
+      '<div class="pat-head">'
+        + '<span class="badge ' + p.badge + '">' + p.label + '<\/span>'
+        + '<span class="pat-sub">X:' + subX + ' / Y:' + subY + '<\/span>'
+      + '<\/div>'
+      + '<div class="pat-body">'
+        + '<div class="vals">'
+          + '<div>'
+            + '<span class="main-val">' + fmt(d) + '<\/span><span class="main-unit">mm<\/span>'
+          + '<\/div>'
+          + '<div class="sub-vals">'
+            + '<div class="sub-item"><strong>' + (d/1000).toFixed(3) + '<\/strong> m<\/div>'
+            + '<div class="sub-item"><strong>' + (d/303.03).toFixed(2) + '<\/strong> 尺<\/div>'
+          + '<\/div>'
+          + '<div class="dim-info">X:<strong>' + fmt(ax) + '<\/strong> / Y:<strong>' + fmt(ay) + '<\/strong><\/div>'
+        + '<\/div>'
+        + '<div class="svg-wrap">' + makeSVG(ax, ay, p.color, p.id, ox, oy) + '<\/div>'
+      + '<\/div>';
     res.appendChild(card);
   });
 }
 
+/* ===== クリア ===== */
 function clearAll() {
   document.getElementById('inX').value = '';
   document.getElementById('inY').value = '';
+  document.getElementById('exprX').textContent = '';
+  document.getElementById('exprY').textContent = '';
   document.getElementById('results').innerHTML = '';
   document.getElementById('hint').style.display = '';
   document.getElementById('inX').focus();
