@@ -308,7 +308,7 @@ function makeOffsetDiagram() {
     var ix = bx + sox, iy = by + soy, iw = rw - sox * 2, ih = rh - soy * 2;
     var xMid = bx + rw / 2;
     var yMid = by + rh / 2;
-    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" style="max-width:' + W + 'px;overflow:visible" xmlns="http://www.w3.org/2000/svg">';
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" style="max-width:360px;overflow:visible" xmlns="http://www.w3.org/2000/svg">';
     s += '<defs><marker id="dArR" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,1 L5,3 L0,5 Z" fill="' + c2 + '"/></marker><marker id="dArL" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto"><path d="M5,1 L0,3 L5,5 Z" fill="' + c2 + '"/></marker></defs>';
     s += '<rect x="' + bx + '" y="' + by + '" width="' + rw + '" height="' + rh + '" fill="' + c1 + '" fill-opacity="0.06" stroke="' + c1 + '" stroke-width="1.8" rx="2"/>';
     var dash = '9 3 2 3';
@@ -323,18 +323,18 @@ function makeOffsetDiagram() {
         s += '<line x1="' + bx + '" y1="' + (by - 2) + '" x2="' + bx + '" y2="' + yArr + '" stroke="' + c1 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + ix + '" y1="' + (by - 2) + '" x2="' + ix + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + (bx + 2) + '" y1="' + yArr + '" x2="' + (ix - 2) + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
-        s += '<text x="' + ((bx + ix) / 2) + '" y="' + (yArr - 2) + '" font-size="9" fill="' + c2 + '" text-anchor="middle" font-weight="600">80mm</text>';
+        s += '<text x="' + ((bx + ix) / 2) + '" y="' + (yArr - 2) + '" font-size="12" fill="' + c2 + '" text-anchor="middle" font-weight="600">80mm</text>';
         s += '<line x1="' + (ix + iw) + '" y1="' + (by - 2) + '" x2="' + (ix + iw) + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + rx + '" y1="' + (by - 2) + '" x2="' + rx + '" y2="' + yArr + '" stroke="' + c1 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + (ix + iw + 2) + '" y1="' + yArr + '" x2="' + (rx - 2) + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
-        s += '<text x="' + ((ix + iw + rx) / 2) + '" y="' + (yArr - 2) + '" font-size="9" fill="' + c2 + '" text-anchor="middle" font-weight="600">80mm</text>';
-        s += '<text x="' + xMid + '" y="' + (yArr - 11) + '" font-size="8" fill="' + c2 + '" text-anchor="middle" opacity="0.8">X両側</text>';
+        s += '<text x="' + ((ix + iw + rx) / 2) + '" y="' + (yArr - 2) + '" font-size="12" fill="' + c2 + '" text-anchor="middle" font-weight="600">80mm</text>';
+        s += '<text x="' + xMid + '" y="' + (yArr - 11) + '" font-size="10" fill="' + c2 + '" text-anchor="middle" opacity="0.8">X両側</text>';
       } else {
         s += '<line x1="' + bx + '" y1="' + (by - 2) + '" x2="' + bx + '" y2="' + yArr + '" stroke="' + c1 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + ix + '" y1="' + (by - 2) + '" x2="' + ix + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + (bx + 2) + '" y1="' + yArr + '" x2="' + (ix - 2) + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
-        s += '<text x="' + ((bx + ix) / 2) + '" y="' + (yArr - 2) + '" font-size="9" fill="' + c2 + '" text-anchor="middle" font-weight="600">' + ox + 'mm</text>';
-        s += '<text x="' + xMid + '" y="' + (yArr - 11) + '" font-size="8" fill="' + c2 + '" text-anchor="middle" opacity="0.8">X片側</text>';
+        s += '<text x="' + ((bx + ix) / 2) + '" y="' + (yArr - 2) + '" font-size="12" fill="' + c2 + '" text-anchor="middle" font-weight="600">' + ox + 'mm</text>';
+        s += '<text x="' + xMid + '" y="' + (yArr - 11) + '" font-size="10" fill="' + c2 + '" text-anchor="middle" opacity="0.8">X片側</text>';
       }
     }
     if (oy > 0) {
@@ -345,20 +345,20 @@ function makeOffsetDiagram() {
         s += '<line x1="' + (bx - 2) + '" y1="' + iy + '" x2="' + xArr + '" y2="' + iy + '" stroke="' + c2 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + xArr + '" y1="' + (by + 2) + '" x2="' + xArr + '" y2="' + (iy - 2) + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
         var ym1 = (by + iy) / 2;
-        s += '<text x="' + (xArr - 2) + '" y="' + ym1 + '" font-size="9" fill="' + c2 + '" text-anchor="middle" font-weight="600" transform="rotate(-90,' + (xArr - 2) + ',' + ym1 + ')">80mm</text>';
+        s += '<text x="' + (xArr - 2) + '" y="' + ym1 + '" font-size="12" fill="' + c2 + '" text-anchor="middle" font-weight="600" transform="rotate(-90,' + (xArr - 2) + ',' + ym1 + ')">80mm</text>';
         s += '<line x1="' + (bx - 2) + '" y1="' + (iy + ih) + '" x2="' + xArr + '" y2="' + (iy + ih) + '" stroke="' + c2 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + (bx - 2) + '" y1="' + by2 + '" x2="' + xArr + '" y2="' + by2 + '" stroke="' + c1 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + xArr + '" y1="' + (iy + ih + 2) + '" x2="' + xArr + '" y2="' + (by2 - 2) + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
         var ym2 = (iy + ih + by2) / 2;
-        s += '<text x="' + (xArr - 2) + '" y="' + ym2 + '" font-size="9" fill="' + c2 + '" text-anchor="middle" font-weight="600" transform="rotate(-90,' + (xArr - 2) + ',' + ym2 + ')">80mm</text>';
-        s += '<text x="' + (xArr - 11) + '" y="' + yMid + '" font-size="8" fill="' + c2 + '" text-anchor="middle" opacity="0.8" transform="rotate(-90,' + (xArr - 11) + ',' + yMid + ')">Y両側</text>';
+        s += '<text x="' + (xArr - 2) + '" y="' + ym2 + '" font-size="12" fill="' + c2 + '" text-anchor="middle" font-weight="600" transform="rotate(-90,' + (xArr - 2) + ',' + ym2 + ')">80mm</text>';
+        s += '<text x="' + (xArr - 11) + '" y="' + yMid + '" font-size="10" fill="' + c2 + '" text-anchor="middle" opacity="0.8" transform="rotate(-90,' + (xArr - 11) + ',' + yMid + ')">Y両側</text>';
       } else {
         s += '<line x1="' + (bx - 2) + '" y1="' + by + '" x2="' + xArr + '" y2="' + by + '" stroke="' + c1 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + (bx - 2) + '" y1="' + iy + '" x2="' + xArr + '" y2="' + iy + '" stroke="' + c2 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + xArr + '" y1="' + (by + 2) + '" x2="' + xArr + '" y2="' + (iy - 2) + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
         var ym = (by + iy) / 2;
-        s += '<text x="' + (xArr - 2) + '" y="' + ym + '" font-size="9" fill="' + c2 + '" text-anchor="middle" font-weight="600" transform="rotate(-90,' + (xArr - 2) + ',' + ym + ')">' + oy + 'mm</text>';
-        s += '<text x="' + (xArr - 11) + '" y="' + yMid + '" font-size="8" fill="' + c2 + '" text-anchor="middle" opacity="0.8" transform="rotate(-90,' + (xArr - 11) + ',' + yMid + ')">Y片側</text>';
+        s += '<text x="' + (xArr - 2) + '" y="' + ym + '" font-size="12" fill="' + c2 + '" text-anchor="middle" font-weight="600" transform="rotate(-90,' + (xArr - 2) + ',' + ym + ')">' + oy + 'mm</text>';
+        s += '<text x="' + (xArr - 11) + '" y="' + yMid + '" font-size="10" fill="' + c2 + '" text-anchor="middle" opacity="0.8" transform="rotate(-90,' + (xArr - 11) + ',' + yMid + ')">Y片側</text>';
       }
     }
     s += '</svg>';
@@ -438,11 +438,11 @@ function makeSVG(ax, ay, color, ox, oy) {
     + '<line x1="'+bx+'" y1="'+dimT+'" x2="'+(bx+rw)+'" y2="'+dimT+'" stroke="'+color+'" stroke-width="0.8"/>'
     + '<line x1="'+bx+'" y1="'+(dimT-3)+'" x2="'+bx+'" y2="'+(dimT+3)+'" stroke="'+color+'" stroke-width="0.8"/>'
     + '<line x1="'+(bx+rw)+'" y1="'+(dimT-3)+'" x2="'+(bx+rw)+'" y2="'+(dimT+3)+'" stroke="'+color+'" stroke-width="0.8"/>'
-    + '<text x="'+((bx*2+rw)/2)+'" y="'+(dimT-3)+'" font-size="8" fill="'+color+'" text-anchor="middle">'+fmt(ax)+'</text>'
+    + '<text x="'+((bx*2+rw)/2)+'" y="'+(dimT-3)+'" font-size="10" fill="'+color+'" text-anchor="middle">'+fmt(ax)+'</text>'
     + '<line x1="'+dimL+'" y1="'+by+'" x2="'+dimL+'" y2="'+(by+rh)+'" stroke="'+color+'" stroke-width="0.8"/>'
     + '<line x1="'+(dimL-3)+'" y1="'+by+'" x2="'+(dimL+3)+'" y2="'+by+'" stroke="'+color+'" stroke-width="0.8"/>'
     + '<line x1="'+(dimL-3)+'" y1="'+(by+rh)+'" x2="'+(dimL+3)+'" y2="'+(by+rh)+'" stroke="'+color+'" stroke-width="0.8"/>'
-    + '<text x="'+(dimL-4)+'" y="'+((by*2+rh)/2+3)+'" font-size="8" fill="'+color+'" text-anchor="middle" transform="rotate(-90 '+(dimL-4)+' '+((by*2+rh)/2+3)+')">'+fmt(ay)+'</text>'
+    + '<text x="'+(dimL-4)+'" y="'+((by*2+rh)/2+3)+'" font-size="10" fill="'+color+'" text-anchor="middle" transform="rotate(-90 '+(dimL-4)+' '+((by*2+rh)/2+3)+')">'+fmt(ay)+'</text>'
     + '</svg>';
 }
 
