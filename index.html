@@ -298,6 +298,14 @@
   <div class="hint" id="hint">横・縦の寸法を入力すると<br>3〜4パターンの対角線が表示されます</div>
 </div>
 
+
+<div id="customKP">
+<div class="kp-row"><button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k="/" class="kp-op">÷</button></div>
+<div class="kp-row"><button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="*" class="kp-op">×</button></div>
+<div class="kp-row"><button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k="-" class="kp-op">−</button></div>
+<div class="kp-row"><button data-k="0">0</button><button data-k="." class="kp-op">.</button><button data-k="+" class="kp-op">+</button><button data-k="BS" class="kp-del">⌫</button></div>
+<div class="kp-row"><button data-k="C" class="kp-clr">C</button><button data-k="OK" class="kp-ok">OK ✓</button></div>
+</div>
 <script>
 
 /* オフセット図 */
@@ -569,16 +577,16 @@ function showKP(el){_el=el;kp.style.display="block";setTimeout(function(){el.scr
 function hideKP(){kp.style.display="none";_el=null;}
 function kpPress(k){
 if(!_el)return;
-var el=_el,s=el.selectionStart,e=el.selectionEnd,v=el.value;
-if(k==="BS"){if(s===e&&s>0){el.value=v.slice(0,s-1)+v.slice(s);el.setSelectionRange(s-1,s-1);}else{el.value=v.slice(0,s)+v.slice(e);el.setSelectionRange(s,s);}}
+var el=_el,cs=el.selectionStart,ce=el.selectionEnd,v=el.value;
+if(k==="BS"){if(cs===ce&&cs>0){el.value=v.slice(0,cs-1)+v.slice(cs);el.setSelectionRange(cs-1,cs-1);}else{el.value=v.slice(0,cs)+v.slice(ce);el.setSelectionRange(cs,cs);}}
 else if(k==="C"){el.value="";}
-else{el.value=v.slice(0,s)+k+v.slice(e);el.setSelectionRange(s+1,s+1);}
+else{el.value=v.slice(0,cs)+k+v.slice(ce);el.setSelectionRange(cs+1,cs+1);}
 el.dispatchEvent(new Event("input",{bubbles:true}));
 }
 if(kp){
 kp.querySelectorAll("button[data-k]").forEach(function(btn){
 btn.addEventListener("mousedown",function(e){e.preventDefault();var k=btn.getAttribute("data-k");if(k==="OK")hideKP();else kpPress(k);});
-btn.addEventListener("touchstart",function(e){e.preventDefault();var k=btn.getAttribute("data-k");if(k==="OK")hideKP();else kpPress(k);});
+btn.addEventListener("touchstart",function(e){e.preventDefault();var k=btn.getAttribute("data-k");if(k==="OK")hideKP();else kpPress(k);},{ passive:false });
 });
 }
 if(isTouch()){
@@ -593,17 +601,9 @@ if(kp&&kp.style.display!=="none"&&!kp.contains(e.target)){
 var iX=document.getElementById("inX"),iY=document.getElementById("inY");
 if(e.target!==iX&&e.target!==iY)hideKP();
 }
-});
+},{passive:true});
 }
 })();
 </script>
-
-<div id="customKP">
-<div class="kp-row"><button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k="/" class="kp-op">÷</button></div>
-<div class="kp-row"><button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="*" class="kp-op">×</button></div>
-<div class="kp-row"><button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k="-" class="kp-op">−</button></div>
-<div class="kp-row"><button data-k="0">0</button><button data-k="." class="kp-op">.</button><button data-k="+" class="kp-op">+</button><button data-k="BS" class="kp-del">⌫</button></div>
-<div class="kp-row"><button data-k="C" class="kp-clr">C</button><button data-k="OK" class="kp-ok">OK ✓</button></div>
-</div>
 </body>
 </html>
