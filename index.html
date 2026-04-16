@@ -194,6 +194,15 @@
     }
     .offset-status { border-color: #5b3a80; }
   }
+
+#customKP{position:fixed;bottom:0;left:0;right:0;background:#d1d5db;padding:8px 6px 28px;display:none;z-index:9999;box-shadow:0 -3px 14px rgba(0,0,0,0.28);}
+#customKP .kp-row{display:flex;gap:6px;margin-bottom:6px;justify-content:center;}
+#customKP .kp-row button{flex:1;max-width:90px;height:54px;font-size:24px;border:none;border-radius:10px;background:#fff;color:#1a1a1a;cursor:pointer;box-shadow:0 3px 0 #aaa;font-weight:500;}
+#customKP .kp-row button:active{background:#e0e0e0;box-shadow:none;transform:translateY(2px);}
+#customKP .kp-row button.kp-op{background:#e8edf6;color:#1A5FA8;font-size:22px;}
+#customKP .kp-row button.kp-del{background:#fff0f0;color:#c00;}
+#customKP .kp-row button.kp-ok{background:#1A5FA8;color:#fff;flex:2;font-size:20px;}
+#customKP .kp-row button.kp-clr{background:#f0f0f0;color:#555;flex:2;font-size:20px;}
 </style>
 </head>
 <body>
@@ -551,6 +560,50 @@ function clearAll() {
   document.getElementById('inX').focus();
 }
   makeOffsetDiagram();
+
+(function(){
+function isTouch(){return ("ontouchstart" in window)||navigator.maxTouchPoints>0;}
+var kp=document.getElementById("customKP");
+var _el=null;
+function showKP(el){_el=el;kp.style.display="block";setTimeout(function(){el.scrollIntoView({behavior:"smooth",block:"center"});},150);}
+function hideKP(){kp.style.display="none";_el=null;}
+function kpPress(k){
+if(!_el)return;
+var el=_el,s=el.selectionStart,e=el.selectionEnd,v=el.value;
+if(k==="BS"){if(s===e&&s>0){el.value=v.slice(0,s-1)+v.slice(s);el.setSelectionRange(s-1,s-1);}else{el.value=v.slice(0,s)+v.slice(e);el.setSelectionRange(s,s);}}
+else if(k==="C"){el.value="";}
+else{el.value=v.slice(0,s)+k+v.slice(e);el.setSelectionRange(s+1,s+1);}
+el.dispatchEvent(new Event("input",{bubbles:true}));
+}
+if(kp){
+kp.querySelectorAll("button[data-k]").forEach(function(btn){
+btn.addEventListener("mousedown",function(e){e.preventDefault();var k=btn.getAttribute("data-k");if(k==="OK")hideKP();else kpPress(k);});
+btn.addEventListener("touchstart",function(e){e.preventDefault();var k=btn.getAttribute("data-k");if(k==="OK")hideKP();else kpPress(k);});
+});
+}
+if(isTouch()){
+["inX","inY"].forEach(function(id){
+var el=document.getElementById(id);
+if(!el)return;
+el.setAttribute("inputmode","none");
+el.addEventListener("focus",function(){showKP(el);});
+});
+document.addEventListener("touchstart",function(e){
+if(kp&&kp.style.display!=="none"&&!kp.contains(e.target)){
+var iX=document.getElementById("inX"),iY=document.getElementById("inY");
+if(e.target!==iX&&e.target!==iY)hideKP();
+}
+});
+}
+})();
 </script>
+
+<div id="customKP">
+<div class="kp-row"><button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k="/" class="kp-op">÷</button></div>
+<div class="kp-row"><button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="*" class="kp-op">×</button></div>
+<div class="kp-row"><button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k="-" class="kp-op">−</button></div>
+<div class="kp-row"><button data-k="0">0</button><button data-k="." class="kp-op">.</button><button data-k="+" class="kp-op">+</button><button data-k="BS" class="kp-del">⌫</button></div>
+<div class="kp-row"><button data-k="C" class="kp-clr">C</button><button data-k="OK" class="kp-ok">OK ✓</button></div>
+</div>
 </body>
 </html>
