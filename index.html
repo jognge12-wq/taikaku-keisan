@@ -212,7 +212,7 @@
     <div class="igroup">
       <div class="ilabel"><span class="ilabel-dot dot-x"></span>横（X方向）通り芯〜通り芯</div>
       <div class="uwrap">
-        <input type="text" inputmode="text" id="inX" placeholder="4000"
+        <input type="text" inputmode="decimal" id="inX" placeholder="4000"
           oninput="onInput('X')"
           autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
         <span class="ulabel">mm</span>
@@ -223,7 +223,7 @@
     <div class="igroup">
       <div class="ilabel"><span class="ilabel-dot dot-y"></span>縦（Y方向）通り芯〜通り芯</div>
       <div class="uwrap">
-        <input type="text" inputmode="text" id="inY" placeholder="3000"
+        <input type="text" inputmode="decimal" id="inY" placeholder="3000"
           oninput="onInput('Y')"
           autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
         <span class="ulabel">mm</span>
@@ -440,7 +440,6 @@ function calc() {
 
   /* ①②③ は常に80mm固定で表示 */
   res.appendChild(makeCard('b1', '① 通り芯〜通り芯', 'オフセットなし',        x,      y,      '#1A5FA8', 0,  0,  0,   0));
-  res.appendChild(makeCard('b2', '② 通り芯〜型枠面', 'X:+80mm / Y:+80mm',   x+80,   y+80,   '#3A7D1E', 80, 80, 80,  80));
   res.appendChild(makeCard('b3', '③ 型枠面〜型枠面', 'X:+160mm / Y:+160mm', x+160,  y+160,  '#A06010', 80, 80, 160, 160));
 
   /* ④：標準(80)と異なり、かつ両方なし(0)でない場合のみ表示 */
