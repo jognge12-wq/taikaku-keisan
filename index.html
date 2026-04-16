@@ -243,7 +243,7 @@
 
   <!-- 型枠オフセット（3択） -->
   <div class="card">
-    <div class="card-title">型枠オフセット（片面）</div>
+    <div class="card-title">型枠オフセット</div>
 
     <div class="offset-row">
       <div class="ax-label"><span class="ax-tag ax-x">X 横</span></div>
@@ -306,6 +306,8 @@ function makeOffsetDiagram() {
     var c1 = '#1A5FA8', c2 = '#3A7D1E';
     var ov = fixGap + 8;
     var ix = bx + sox, iy = by + soy, iw = rw - sox * 2, ih = rh - soy * 2;
+    var xMid = bx + rw / 2;
+    var yMid = by + rh / 2;
     var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" style="max-width:' + W + 'px;overflow:visible" xmlns="http://www.w3.org/2000/svg">';
     s += '<defs><marker id="dArR" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,1 L5,3 L0,5 Z" fill="' + c2 + '"/></marker><marker id="dArL" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto"><path d="M5,1 L0,3 L5,5 Z" fill="' + c2 + '"/></marker></defs>';
     s += '<rect x="' + bx + '" y="' + by + '" width="' + rw + '" height="' + rh + '" fill="' + c1 + '" fill-opacity="0.06" stroke="' + c1 + '" stroke-width="1.8" rx="2"/>';
@@ -326,13 +328,13 @@ function makeOffsetDiagram() {
         s += '<line x1="' + rx + '" y1="' + (by - 2) + '" x2="' + rx + '" y2="' + yArr + '" stroke="' + c1 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + (ix + iw + 2) + '" y1="' + yArr + '" x2="' + (rx - 2) + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
         s += '<text x="' + ((ix + iw + rx) / 2) + '" y="' + (yArr - 2) + '" font-size="9" fill="' + c2 + '" text-anchor="middle" font-weight="600">80mm</text>';
-        s += '<text x="' + (W / 2) + '" y="' + (yArr - 11) + '" font-size="8" fill="' + c2 + '" text-anchor="middle" opacity="0.8">X両側</text>';
+        s += '<text x="' + xMid + '" y="' + (yArr - 11) + '" font-size="8" fill="' + c2 + '" text-anchor="middle" opacity="0.8">X両側</text>';
       } else {
         s += '<line x1="' + bx + '" y1="' + (by - 2) + '" x2="' + bx + '" y2="' + yArr + '" stroke="' + c1 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + ix + '" y1="' + (by - 2) + '" x2="' + ix + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + (bx + 2) + '" y1="' + yArr + '" x2="' + (ix - 2) + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
         s += '<text x="' + ((bx + ix) / 2) + '" y="' + (yArr - 2) + '" font-size="9" fill="' + c2 + '" text-anchor="middle" font-weight="600">' + ox + 'mm</text>';
-        s += '<text x="' + ((bx + ix) / 2) + '" y="' + (yArr - 11) + '" font-size="8" fill="' + c2 + '" text-anchor="middle" opacity="0.8">X片側</text>';
+        s += '<text x="' + xMid + '" y="' + (yArr - 11) + '" font-size="8" fill="' + c2 + '" text-anchor="middle" opacity="0.8">X片側</text>';
       }
     }
     if (oy > 0) {
@@ -349,14 +351,14 @@ function makeOffsetDiagram() {
         s += '<line x1="' + xArr + '" y1="' + (iy + ih + 2) + '" x2="' + xArr + '" y2="' + (by2 - 2) + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
         var ym2 = (iy + ih + by2) / 2;
         s += '<text x="' + (xArr - 2) + '" y="' + ym2 + '" font-size="9" fill="' + c2 + '" text-anchor="middle" font-weight="600" transform="rotate(-90,' + (xArr - 2) + ',' + ym2 + ')">80mm</text>';
-        s += '<text x="' + (xArr - 11) + '" y="' + (H / 2) + '" font-size="8" fill="' + c2 + '" text-anchor="middle" opacity="0.8" transform="rotate(-90,' + (xArr - 11) + ',' + (H / 2) + ')">Y両側</text>';
+        s += '<text x="' + (xArr - 11) + '" y="' + yMid + '" font-size="8" fill="' + c2 + '" text-anchor="middle" opacity="0.8" transform="rotate(-90,' + (xArr - 11) + ',' + yMid + ')">Y両側</text>';
       } else {
         s += '<line x1="' + (bx - 2) + '" y1="' + by + '" x2="' + xArr + '" y2="' + by + '" stroke="' + c1 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + (bx - 2) + '" y1="' + iy + '" x2="' + xArr + '" y2="' + iy + '" stroke="' + c2 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
         s += '<line x1="' + xArr + '" y1="' + (by + 2) + '" x2="' + xArr + '" y2="' + (iy - 2) + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
         var ym = (by + iy) / 2;
         s += '<text x="' + (xArr - 2) + '" y="' + ym + '" font-size="9" fill="' + c2 + '" text-anchor="middle" font-weight="600" transform="rotate(-90,' + (xArr - 2) + ',' + ym + ')">' + oy + 'mm</text>';
-        s += '<text x="' + (xArr - 11) + '" y="' + ym + '" font-size="8" fill="' + c2 + '" text-anchor="middle" opacity="0.8" transform="rotate(-90,' + (xArr - 11) + ',' + ym + ')">Y片側</text>';
+        s += '<text x="' + (xArr - 11) + '" y="' + yMid + '" font-size="8" fill="' + c2 + '" text-anchor="middle" opacity="0.8" transform="rotate(-90,' + (xArr - 11) + ',' + yMid + ')">Y片側</text>';
       }
     }
     s += '</svg>';
@@ -533,7 +535,7 @@ function calc() {
     var ay4   = y + offsetY;
     var subX4 = '+' + fmt(offsetX) + 'mm';
     var subY4 = '+' + fmt(offsetY) + 'mm';
-    res.appendChild(makeCard('b3', '③ 調整後（片面）', 'X:' + subX4 + ' / Y:' + subY4,
+    res.appendChild(makeCard('b3', '③ 調整後', 'X:' + subX4 + ' / Y:' + subY4,
       ax4, ay4, '#A06010', offsetX, offsetY, offsetX, offsetY));
   }
 }
