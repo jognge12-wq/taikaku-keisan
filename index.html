@@ -1,1 +1,556 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="対角計算">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<title>対角計算ツール</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap');
 
+  :root {
+    --bg: #F5F3EE;
+    --surface: #FFFFFF;
+    --surface2: #EEEBE4;
+    --border: #D8D4CA;
+    --text: #1A1814;
+    --text2: #6B6760;
+    --text3: #9E9B95;
+    --c1: #1A5FA8;  --c1bg: #E8F1FB;
+    --c2: #3A7D1E;  --c2bg: #E8F5E0;
+    --c3: #A06010;  --c3bg: #FBF0DF;
+    --c4: #6B21A8;  --c4bg: #F3E8FF;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  header {
+    background: var(--text); color: #fff;
+    padding: 16px 20px 14px;
+    display: flex; align-items: center; gap: 12px;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .header-icon {
+    width: 32px; height: 32px; flex-shrink: 0;
+    background: rgba(255,255,255,0.15); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  header h1 { font-size: 17px; font-weight: 700; letter-spacing: 0.02em; }
+  header p  { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 1px; }
+
+  .main { padding: 16px 16px 40px; max-width: 480px; margin: 0 auto; }
+
+  /* ===== 入力カード ===== */
+  .card {
+    background: var(--surface); border-radius: var(--radius);
+    border: 1px solid var(--border); padding: 16px; margin-bottom: 12px;
+  }
+  .card-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text3); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .igroup { margin-bottom: 12px; }
+  .igroup:last-child { margin-bottom: 0; }
+  .ilabel { font-size: 12px; color: var(--text2); margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .ilabel-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .dot-x { background: var(--c1); }
+  .dot-y { background: var(--c3); }
+
+  /* ===== 入力欄 ===== */
+  .uwrap { display: flex; align-items: center; gap: 8px; }
+  .uwrap input {
+    flex: 1; min-width: 0; width: 0;
+    font-size: 24px; font-family: 'DM Mono', monospace; font-weight: 500;
+    padding: 10px 12px; border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border); background: var(--bg); color: var(--text);
+    outline: none; transition: border-color 0.15s; -webkit-appearance: none;
+  }
+  .uwrap input:focus { border-color: var(--text); }
+  .uwrap input::placeholder { color: var(--text3); font-size: 20px; }
+  .ulabel { font-size: 15px; color: var(--text2); font-weight: 600; flex-shrink: 0; white-space: nowrap; }
+  .expr-preview { font-size: 12px; color: var(--c2); font-family: 'DM Mono', monospace; font-weight: 500; margin-top: 4px; min-height: 16px; }
+  .expr-hint { font-size: 11px; color: var(--text3); margin-top: 3px; line-height: 1.5; }
+
+  /* ===== オフセットボタン（3択） ===== */
+  .offset-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .offset-row:last-child { margin-bottom: 0; }
+  .ax-label { flex-shrink: 0; width: 54px; }
+  .ax-tag {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    padding: 2px 7px; border-radius: 10px; letter-spacing: 0.04em;
+  }
+  .ax-x { background: var(--c1bg); color: var(--c1); }
+  .ax-y { background: var(--c3bg); color: var(--c3); }
+
+  .offset-btns { display: flex; gap: 6px; flex: 1; }
+  .offset-btn {
+    flex: 1; padding: 8px 2px;
+    font-size: 11px; font-family: 'Noto Sans JP', sans-serif; font-weight: 500;
+    border-radius: var(--radius-sm); border: 1.5px solid var(--border);
+    background: var(--bg); color: var(--text2);
+    cursor: pointer; transition: all 0.15s; text-align: center; -webkit-appearance: none;
+  }
+  .offset-btn .btn-val { display: block; font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 700; color: var(--text); }
+  .offset-btn .btn-sub { display: block; font-size: 10px; color: var(--text3); margin-top: 1px; }
+  .offset-btn.active { border-color: var(--text); background: var(--text); }
+  .offset-btn.active .btn-val { color: #fff; }
+  .offset-btn.active .btn-sub { color: rgba(255,255,255,0.6); }
+  .offset-btn:active { opacity: 0.75; }
+
+
+  /* ===== オフセット図 ===== */
+  .offset-diagram {
+    margin-top: 12px;
+    display: none;
+  }
+  .offset-diagram.show { display: block; }
+  .offset-diagram svg { display: block; margin: 0 auto; overflow: visible; }
+
+  /* ③表示中のインジケーター */
+  .offset-status {
+    margin-top: 10px; padding: 8px 12px;
+    background: var(--c4bg); border-radius: var(--radius-sm);
+    border: 1px solid #ddd0f7;
+    font-size: 11px; color: var(--c4); font-weight: 500;
+    display: none;
+  }
+  .offset-status.show { display: block; }
+
+  /* ===== クリア ===== */
+  .clear-btn {
+    width: 100%; padding: 12px; font-size: 14px;
+    font-family: 'Noto Sans JP', sans-serif; color: var(--text2);
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    background: var(--surface); cursor: pointer; margin-bottom: 16px;
+    font-weight: 500; transition: background 0.15s; -webkit-appearance: none;
+  }
+  .clear-btn:active { background: var(--surface2); }
+
+  /* ===== 結果カード ===== */
+  .results { display: flex; flex-direction: column; gap: 12px; }
+  .pat-card {
+    background: var(--surface); border-radius: var(--radius);
+    border: 1px solid var(--border); overflow: hidden; transition: transform 0.1s;
+  }
+  .pat-card:active { transform: scale(0.99); }
+  .pat-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px; border-bottom: 1px solid var(--border);
+  }
+  .badge { font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.02em; }
+  .b1 { background: var(--c1bg); color: var(--c1); }
+  .b2 { background: var(--c2bg); color: var(--c2); }
+  .b3 { background: var(--c3bg); color: var(--c3); }
+  .b4 { background: var(--c4bg); color: var(--c4); }
+  .pat-sub { font-size: 11px; color: var(--text3); font-weight: 500; }
+  .pat-body { display: grid; grid-template-columns: 1fr 128px; align-items: center; }
+  .vals { padding: 12px 14px; }
+  .main-val { font-family: 'DM Mono', monospace; font-size: 30px; font-weight: 500; color: var(--text); line-height: 1; letter-spacing: -0.01em; }
+  .main-unit { font-size: 14px; color: var(--text2); margin-left: 3px; }
+  .sub-vals { display: flex; gap: 12px; margin-top: 6px; }
+  .sub-item { font-size: 12px; color: var(--text3); }
+  .sub-item strong { color: var(--text2); font-weight: 500; font-family: 'DM Mono', monospace; font-size: 13px; }
+
+  /* ===== 寸法表示（①） ===== */
+  .dim-info { font-size: 11px; color: var(--text3); margin-top: 5px; }
+  .dim-info strong { color: var(--text2); font-weight: 500; font-family: 'DM Mono', monospace; }
+
+  /* ===== 計算内訳（②③④） ===== */
+  .dim-calc { margin-top: 6px; }
+  .calc-row {
+    display: flex; align-items: baseline; gap: 3px;
+    font-size: 11px; color: var(--text3);
+    line-height: 1.8;
+  }
+  .calc-row .ca { color: var(--text3); font-weight: 500; min-width: 11px; }
+  .calc-row .cv { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--text2); }
+  .calc-row .co { color: var(--text3); margin: 0 1px; }
+  .calc-row .cv-total {
+    font-family: 'DM Mono', monospace; font-weight: 700;
+    color: var(--text); font-size: 12px;
+  }
+  .calc-row .cv-unit { font-size: 10px; color: var(--text3); margin-left: 1px; }
+
+  .svg-wrap { padding: 8px 10px 8px 0; display: flex; align-items: center; justify-content: center; }
+  .hint { text-align: center; font-size: 12px; color: var(--text3); padding: 28px 0 10px; line-height: 1.8; }
+
+  /* ===== ダークモード ===== */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141210; --surface: #1E1C19; --surface2: #272420; --border: #3A3730;
+      --text: #F0EDE8; --text2: #9E9B95; --text3: #5E5B56;
+      --c1bg: #0F2A45; --c1: #6BAEE8;
+      --c2bg: #152810; --c2: #7CC44A;
+      --c3bg: #2E1E08; --c3: #E8A050;
+      --c4bg: #2A1040; --c4: #C084FC;
+    }
+    .offset-status { border-color: #5b3a80; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-icon">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <rect x="1" y="1" width="11" height="11" rx="1.5" stroke="white" stroke-width="1.5"/>
+      <line x1="1.5" y1="1.5" x2="12.5" y2="12.5" stroke="white" stroke-width="1.5" stroke-dasharray="3 1.5"/>
+      <line x1="6" y1="12" x2="17" y2="12" stroke="white" stroke-width="1.5"/>
+      <line x1="12" y1="6" x2="12" y2="17" stroke="white" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <div>
+    <h1>対角計算ツール</h1>
+    <p>通り芯 / 型枠面 — 最大4パターン表示</p>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- 通り芯の寸法 -->
+  <div class="card">
+    <div class="card-title">通り芯の寸法</div>
+    <div class="igroup">
+      <div class="ilabel"><span class="ilabel-dot dot-x"></span>横（X方向）通り芯〜通り芯</div>
+      <div class="uwrap">
+        <input type="text" inputmode="text" id="inX" placeholder="4000"
+          oninput="onInput('X')"
+          autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+        <span class="ulabel">mm</span>
+      </div>
+      <div class="expr-preview" id="exprX"></div>
+      <div class="expr-hint">例: 4000+200、3600-75 のように計算式も入力できます</div>
+    </div>
+    <div class="igroup">
+      <div class="ilabel"><span class="ilabel-dot dot-y"></span>縦（Y方向）通り芯〜通り芯</div>
+      <div class="uwrap">
+        <input type="text" inputmode="text" id="inY" placeholder="3000"
+          oninput="onInput('Y')"
+          autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+        <span class="ulabel">mm</span>
+      </div>
+      <div class="expr-preview" id="exprY"></div>
+    </div>
+  </div>
+
+  <!-- 型枠オフセット（3択） -->
+  <div class="card">
+    <div class="card-title">型枠オフセット</div>
+
+    <div class="offset-row">
+      <div class="ax-label"><span class="ax-tag ax-x">X 横</span></div>
+      <div class="offset-btns">
+        <button class="offset-btn active" id="ox0" onclick="setOffset('x',0)">
+          <span class="btn-val">なし</span><span class="btn-sub">0mm</span>
+        </button>
+        <button class="offset-btn" id="ox80" onclick="setOffset('x',80)">
+          <span class="btn-val">80mm</span><span class="btn-sub">片側</span>
+        </button>
+        <button class="offset-btn" id="ox160" onclick="setOffset('x',160)">
+          <span class="btn-val">160mm</span><span class="btn-sub">両側</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="offset-row">
+      <div class="ax-label"><span class="ax-tag ax-y">Y 縦</span></div>
+      <div class="offset-btns">
+        <button class="offset-btn active" id="oy0" onclick="setOffset('y',0)">
+          <span class="btn-val">なし</span><span class="btn-sub">0mm</span>
+        </button>
+        <button class="offset-btn" id="oy80" onclick="setOffset('y',80)">
+          <span class="btn-val">80mm</span><span class="btn-sub">片側</span>
+        </button>
+        <button class="offset-btn" id="oy160" onclick="setOffset('y',160)">
+          <span class="btn-val">160mm</span><span class="btn-sub">両側</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ④表示中のインジケーター -->
+    <div class="offset-diagram" id="offsetDiagram"></div>
+
+    <div class="offset-status" id="offsetStatus">
+      ③ 調整後パターンを表示中
+    </div>
+  </div>
+
+  <button class="clear-btn" onclick="clearAll()">クリア</button>
+
+  <div class="results" id="results"></div>
+  <div class="hint" id="hint">横・縦の寸法を入力すると<br>3〜4パターンの対角線が表示されます</div>
+</div>
+
+<script>
+
+/* オフセット図 */
+function makeOffsetDiagram() {
+    var el = document.getElementById('offsetDiagram');
+    if (!el) return;
+    var ox = offsetX, oy = offsetY;
+    el.classList.add('show');
+    var W = 220, H = 150;
+    var padL = 42, padR = 22, padT = 38, padB = 14;
+    var rw = W - padL - padR, rh = H - padT - padB;
+    var bx = padL, by = padT;
+    var fixGap = 18;
+    var sox = fixGap, soy = fixGap;
+    var c1 = '#1A5FA8', c2 = '#3A7D1E';
+    var ov = fixGap + 8;
+    var ix = bx + sox, iy = by + soy, iw = rw - sox * 2, ih = rh - soy * 2;
+    var xMid = bx + rw / 2;
+    var yMid = by + rh / 2;
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" style="max-width:360px;overflow:visible" xmlns="http://www.w3.org/2000/svg">';
+    s += '<defs><marker id="dArR" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,1 L5,3 L0,5 Z" fill="' + c2 + '"/></marker><marker id="dArL" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto"><path d="M5,1 L0,3 L5,5 Z" fill="' + c2 + '"/></marker></defs>';
+    s += '<rect x="' + bx + '" y="' + by + '" width="' + rw + '" height="' + rh + '" fill="' + c1 + '" fill-opacity="0.06" stroke="' + c1 + '" stroke-width="1.8" rx="2"/>';
+    var dash = '9 3 2 3';
+    s += '<line x1="' + (ix - ov) + '" y1="' + iy + '" x2="' + (ix + iw + ov) + '" y2="' + iy + '" stroke="' + c2 + '" stroke-width="1.4" stroke-dasharray="' + dash + '"/>';
+    s += '<line x1="' + (ix - ov) + '" y1="' + (iy + ih) + '" x2="' + (ix + iw + ov) + '" y2="' + (iy + ih) + '" stroke="' + c2 + '" stroke-width="1.4" stroke-dasharray="' + dash + '"/>';
+    s += '<line x1="' + ix + '" y1="' + (iy - ov) + '" x2="' + ix + '" y2="' + (iy + ih + ov) + '" stroke="' + c2 + '" stroke-width="1.4" stroke-dasharray="' + dash + '"/>';
+    s += '<line x1="' + (ix + iw) + '" y1="' + (iy - ov) + '" x2="' + (ix + iw) + '" y2="' + (iy + ih + ov) + '" stroke="' + c2 + '" stroke-width="1.4" stroke-dasharray="' + dash + '"/>';
+    if (ox > 0) {
+      var yArr = by - 14;
+      if (ox === 160) {
+        var rx = bx + rw;
+        s += '<line x1="' + bx + '" y1="' + (by - 2) + '" x2="' + bx + '" y2="' + yArr + '" stroke="' + c1 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
+        s += '<line x1="' + ix + '" y1="' + (by - 2) + '" x2="' + ix + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
+        s += '<line x1="' + (bx + 2) + '" y1="' + yArr + '" x2="' + (ix - 2) + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
+        s += '<text x="' + ((bx + ix) / 2) + '" y="' + (yArr - 2) + '" font-size="12" fill="' + c2 + '" text-anchor="middle" font-weight="600">80mm</text>';
+        s += '<line x1="' + (ix + iw) + '" y1="' + (by - 2) + '" x2="' + (ix + iw) + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
+        s += '<line x1="' + rx + '" y1="' + (by - 2) + '" x2="' + rx + '" y2="' + yArr + '" stroke="' + c1 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
+        s += '<line x1="' + (ix + iw + 2) + '" y1="' + yArr + '" x2="' + (rx - 2) + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
+        s += '<text x="' + ((ix + iw + rx) / 2) + '" y="' + (yArr - 2) + '" font-size="12" fill="' + c2 + '" text-anchor="middle" font-weight="600">80mm</text>';
+        s += '<text x="' + xMid + '" y="' + (yArr - 11) + '" font-size="10" fill="' + c2 + '" text-anchor="middle" opacity="0.8">X両側</text>';
+      } else {
+        s += '<line x1="' + bx + '" y1="' + (by - 2) + '" x2="' + bx + '" y2="' + yArr + '" stroke="' + c1 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
+        s += '<line x1="' + ix + '" y1="' + (by - 2) + '" x2="' + ix + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
+        s += '<line x1="' + (bx + 2) + '" y1="' + yArr + '" x2="' + (ix - 2) + '" y2="' + yArr + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
+        s += '<text x="' + ((bx + ix) / 2) + '" y="' + (yArr - 2) + '" font-size="12" fill="' + c2 + '" text-anchor="middle" font-weight="600">' + ox + 'mm</text>';
+        s += '<text x="' + xMid + '" y="' + (yArr - 11) + '" font-size="10" fill="' + c2 + '" text-anchor="middle" opacity="0.8">X片側</text>';
+      }
+    }
+    if (oy > 0) {
+      var xArr = bx - 14;
+      if (oy === 160) {
+        var by2 = by + rh;
+        s += '<line x1="' + (bx - 2) + '" y1="' + by + '" x2="' + xArr + '" y2="' + by + '" stroke="' + c1 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
+        s += '<line x1="' + (bx - 2) + '" y1="' + iy + '" x2="' + xArr + '" y2="' + iy + '" stroke="' + c2 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
+        s += '<line x1="' + xArr + '" y1="' + (by + 2) + '" x2="' + xArr + '" y2="' + (iy - 2) + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
+        var ym1 = (by + iy) / 2;
+        s += '<text x="' + (xArr - 2) + '" y="' + ym1 + '" font-size="12" fill="' + c2 + '" text-anchor="middle" font-weight="600" transform="rotate(-90,' + (xArr - 2) + ',' + ym1 + ')">80mm</text>';
+        s += '<line x1="' + (bx - 2) + '" y1="' + (iy + ih) + '" x2="' + xArr + '" y2="' + (iy + ih) + '" stroke="' + c2 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
+        s += '<line x1="' + (bx - 2) + '" y1="' + by2 + '" x2="' + xArr + '" y2="' + by2 + '" stroke="' + c1 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
+        s += '<line x1="' + xArr + '" y1="' + (iy + ih + 2) + '" x2="' + xArr + '" y2="' + (by2 - 2) + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
+        var ym2 = (iy + ih + by2) / 2;
+        s += '<text x="' + (xArr - 2) + '" y="' + ym2 + '" font-size="12" fill="' + c2 + '" text-anchor="middle" font-weight="600" transform="rotate(-90,' + (xArr - 2) + ',' + ym2 + ')">80mm</text>';
+        s += '<text x="' + (xArr - 11) + '" y="' + yMid + '" font-size="10" fill="' + c2 + '" text-anchor="middle" opacity="0.8" transform="rotate(-90,' + (xArr - 11) + ',' + yMid + ')">Y両側</text>';
+      } else {
+        s += '<line x1="' + (bx - 2) + '" y1="' + by + '" x2="' + xArr + '" y2="' + by + '" stroke="' + c1 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
+        s += '<line x1="' + (bx - 2) + '" y1="' + iy + '" x2="' + xArr + '" y2="' + iy + '" stroke="' + c2 + '" stroke-width="0.7" stroke-dasharray="2 2"/>';
+        s += '<line x1="' + xArr + '" y1="' + (by + 2) + '" x2="' + xArr + '" y2="' + (iy - 2) + '" stroke="' + c2 + '" stroke-width="1.2" marker-start="url(#dArL)" marker-end="url(#dArR)"/>';
+        var ym = (by + iy) / 2;
+        s += '<text x="' + (xArr - 2) + '" y="' + ym + '" font-size="12" fill="' + c2 + '" text-anchor="middle" font-weight="600" transform="rotate(-90,' + (xArr - 2) + ',' + ym + ')">' + oy + 'mm</text>';
+        s += '<text x="' + (xArr - 11) + '" y="' + yMid + '" font-size="10" fill="' + c2 + '" text-anchor="middle" opacity="0.8" transform="rotate(-90,' + (xArr - 11) + ',' + yMid + ')">Y片側</text>';
+      }
+    }
+    s += '</svg>';
+    el.innerHTML = s;
+  }
+
+/* オフセット状態 */
+var offsetX = 0;
+var offsetY = 0;
+
+/* なし/80mm/160mm の3択 */
+function setOffset(axis, val) {
+  if (axis === 'x') {
+    offsetX = val;
+    document.getElementById('ox0').classList.toggle('active',   val === 0);
+    document.getElementById('ox80').classList.toggle('active',  val === 80);
+    document.getElementById('ox160').classList.toggle('active', val === 160);
+  } else {
+    offsetY = val;
+    document.getElementById('oy0').classList.toggle('active',   val === 0);
+    document.getElementById('oy80').classList.toggle('active',  val === 80);
+    document.getElementById('oy160').classList.toggle('active', val === 160);
+  }
+  updateOffsetStatus();
+  calc();
+}
+
+function updateOffsetStatus() {
+  var hasOffset = offsetX > 0 || offsetY > 0;
+  document.getElementById('offsetStatus').classList.toggle('show', hasOffset);
+  makeOffsetDiagram();
+}
+
+/* 安全な計算式パーサー */
+function parseExpr(s) {
+  if (!s || !s.trim()) return NaN;
+  var clean = s.trim().replace(/[^0-9+\-*\/().\s]/g, '');
+  if (!clean) return NaN;
+  try {
+    var val = Function('"use strict"; return (' + clean + ')')();
+    return (typeof val === 'number' && isFinite(val) && val > 0) ? val : NaN;
+  } catch(e) { return NaN; }
+}
+
+function onInput(axis) {
+  var raw = document.getElementById('in' + axis).value;
+  var el  = document.getElementById('expr' + axis);
+  if (/[+\-*\/()]/.test(raw)) {
+    var val = parseExpr(raw);
+    el.textContent = isNaN(val) ? '' : '= ' + fmt(val) + ' mm';
+  } else {
+    el.textContent = '';
+  }
+  calc();
+}
+
+function fmt(n)    { return Math.round(n).toLocaleString(); }
+function diag(a,b) { return Math.sqrt(a*a + b*b); }
+
+/* SVG生成 */
+function makeSVG(ax, ay, color, ox, oy) {
+  var W=128, H=108, pad=22;
+  var scale = Math.min((W-pad*2)/ax, (H-pad*2)/ay);
+  var rw = ax*scale, rh = ay*scale;
+  var bx = (W-rw)/2, by = (H-rh)/2;
+
+  var sox = ox*scale, soy = oy*scale;
+  var inner = '';
+  if (ox > 0 && rw - sox > 2 && rh - soy > 2) {
+    inner = '<rect x="'+(bx+sox/2)+'" y="'+(by+soy/2)+'" width="'+(rw-sox)+'" height="'+(rh-soy)+'" fill="none" stroke="'+color+'" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.5" rx="1"/>';
+  }
+  var dimT = by - 10, dimL = bx - 11;
+  return '<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" xmlns="http://www.w3.org/2000/svg">'
+    + '<rect x="'+bx+'" y="'+by+'" width="'+rw+'" height="'+rh+'" fill="'+color+'" fill-opacity="0.09" stroke="'+color+'" stroke-width="1.8" rx="2"/>'
+    + inner
+    + '<line x1="'+bx+'" y1="'+by+'" x2="'+(bx+rw)+'" y2="'+(by+rh)+'" stroke="'+color+'" stroke-width="2" stroke-dasharray="5 3"/>'
+    + '<line x1="'+bx+'" y1="'+dimT+'" x2="'+(bx+rw)+'" y2="'+dimT+'" stroke="'+color+'" stroke-width="0.8"/>'
+    + '<line x1="'+bx+'" y1="'+(dimT-3)+'" x2="'+bx+'" y2="'+(dimT+3)+'" stroke="'+color+'" stroke-width="0.8"/>'
+    + '<line x1="'+(bx+rw)+'" y1="'+(dimT-3)+'" x2="'+(bx+rw)+'" y2="'+(dimT+3)+'" stroke="'+color+'" stroke-width="0.8"/>'
+    + '<text x="'+((bx*2+rw)/2)+'" y="'+(dimT-3)+'" font-size="10" fill="'+color+'" text-anchor="middle">'+fmt(ax)+'</text>'
+    + '<line x1="'+dimL+'" y1="'+by+'" x2="'+dimL+'" y2="'+(by+rh)+'" stroke="'+color+'" stroke-width="0.8"/>'
+    + '<line x1="'+(dimL-3)+'" y1="'+by+'" x2="'+(dimL+3)+'" y2="'+by+'" stroke="'+color+'" stroke-width="0.8"/>'
+    + '<line x1="'+(dimL-3)+'" y1="'+(by+rh)+'" x2="'+(dimL+3)+'" y2="'+(by+rh)+'" stroke="'+color+'" stroke-width="0.8"/>'
+    + '<text x="'+(dimL-4)+'" y="'+((by*2+rh)/2+3)+'" font-size="10" fill="'+color+'" text-anchor="middle" transform="rotate(-90 '+(dimL-4)+' '+((by*2+rh)/2+3)+')">'+fmt(ay)+'</text>'
+    + '</svg>';
+}
+
+/*
+ * makeCard(badge, label, sub, ax, ay, color, svgOx, svgOy, dispOffX, dispOffY)
+ *   ax, ay       : 対角計算に使う実際の寸法（オフセット込み）
+ *   svgOx, svgOy : SVG内の内枠描画用オフセット（片側）
+ *   dispOffX/Y   : 計算内訳表示用オフセット（合計値）
+ *                  両方0なら内訳なし、それ以外は「入力値 + Omm = 合計」を2行表示
+ */
+function makeCard(badge, label, sub, ax, ay, color, svgOx, svgOy, dispOffX, dispOffY) {
+  dispOffX = dispOffX || 0;
+  dispOffY = dispOffY || 0;
+  var d = diag(ax, ay);
+  var card = document.createElement('div');
+  card.className = 'pat-card';
+
+  var dimHtml;
+  if (dispOffX === 0 && dispOffY === 0) {
+    /* ①：内訳なし（シンプル表示） */
+    dimHtml = '<div class="dim-info">X:<strong>' + fmt(ax) + '</strong> / Y:<strong>' + fmt(ay) + '</strong></div>';
+  } else {
+    /* ②③④：入力値 + オフセット = 合計 を2行で表示 */
+    var baseX = ax - dispOffX;
+    var baseY = ay - dispOffY;
+    dimHtml = '<div class="dim-calc">'
+      + '<div class="calc-row">'
+        + '<span class="ca">X</span>'
+        + '<span class="cv">' + fmt(baseX) + '</span>'
+        + '<span class="co">+</span>'
+        + '<span class="cv">' + fmt(dispOffX) + '</span>'
+        + '<span class="co">=</span>'
+        + '<span class="cv-total">' + fmt(ax) + '</span>'
+        + '<span class="cv-unit">mm</span>'
+      + '</div>'
+      + '<div class="calc-row">'
+        + '<span class="ca">Y</span>'
+        + '<span class="cv">' + fmt(baseY) + '</span>'
+        + '<span class="co">+</span>'
+        + '<span class="cv">' + fmt(dispOffY) + '</span>'
+        + '<span class="co">=</span>'
+        + '<span class="cv-total">' + fmt(ay) + '</span>'
+        + '<span class="cv-unit">mm</span>'
+      + '</div>'
+    + '</div>';
+  }
+
+  card.innerHTML =
+    '<div class="pat-head">'
+      + '<span class="badge ' + badge + '">' + label + '</span>'
+      + '<span class="pat-sub">' + sub + '</span>'
+    + '</div>'
+    + '<div class="pat-body">'
+      + '<div class="vals">'
+        + '<div><span class="main-val">' + fmt(d) + '</span><span class="main-unit">mm</span></div>'
+        + '<div class="sub-vals">'
+          + '<div class="sub-item"><strong>' + (d/1000).toFixed(3) + '</strong> m</div>'
+          + '<div class="sub-item"><strong>' + (d/303.03).toFixed(2) + '</strong> 尺</div>'
+        + '</div>'
+        + dimHtml
+      + '</div>'
+      + '<div class="svg-wrap">' + makeSVG(ax, ay, color, svgOx, svgOy) + '</div>'
+    + '</div>';
+  return card;
+}
+
+/* メイン計算 */
+function calc() {
+  var x = parseExpr(document.getElementById('inX').value);
+  var y = parseExpr(document.getElementById('inY').value);
+  var res  = document.getElementById('results');
+  var hint = document.getElementById('hint');
+
+  if (isNaN(x) || isNaN(y) || x <= 0 || y <= 0) {
+    res.innerHTML = '';
+    hint.style.display = '';
+    return;
+  }
+  hint.style.display = 'none';
+  res.innerHTML = '';
+
+  /* ①②③ は常に80mm固定で表示 */
+  res.appendChild(makeCard('b1', '① 通り芯〜通り芯', 'オフセットなし',        x,      y,      '#1A5FA8', 0,  0,  0,   0));
+  res.appendChild(makeCard('b2', '② 型枠面〜型枠面', 'X:+160mm / Y:+160mm', x+160,  y+160,  '#3A7D1E', 80, 80, 160, 160));
+
+  /* ③：オフセットが設定されている場合のみ表示 */
+  var show3 = offsetX > 0 || offsetY > 0;
+  if (show3) {
+    var ax4   = x + offsetX;
+    var ay4   = y + offsetY;
+    var subX4 = '+' + fmt(offsetX) + 'mm';
+    var subY4 = '+' + fmt(offsetY) + 'mm';
+    res.appendChild(makeCard('b3', '③ 調整後', 'X:' + subX4 + ' / Y:' + subY4,
+      ax4, ay4, '#A06010', offsetX, offsetY, offsetX, offsetY));
+  }
+}
+
+/* クリア */
+function clearAll() {
+  document.getElementById('inX').value = '';
+  document.getElementById('inY').value = '';
+  document.getElementById('exprX').textContent = '';
+  document.getElementById('exprY').textContent = '';
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('hint').style.display = '';
+  document.getElementById('inX').focus();
+}
+  makeOffsetDiagram();
+</script>
+</body>
+</html>
